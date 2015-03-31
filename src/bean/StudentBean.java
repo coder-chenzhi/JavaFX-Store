@@ -16,31 +16,6 @@ public class StudentBean {
 		return studentID;
 	}
 
-	public StudentBean(String studentID, String realName, String sex,
-			String birthday, String major, String level, String school,
-			String classGrade, String hobby, String instrument,
-			String parentsName, String phone, String address, String enrollDay,
-			String classType, double balance, boolean status) {
-		super();
-		this.studentID = studentID;
-		this.realName = realName;
-		this.sex = sex;
-		this.birthday = birthday;
-		this.major = major;
-		this.level = level;
-		this.school = school;
-		this.classGrade = classGrade;
-		this.hobby = hobby;
-		this.instrument = instrument;
-		this.parentsName = parentsName;
-		this.phone = phone;
-		this.address = address;
-		this.enrollDay = enrollDay;
-		this.classType = classType;
-		this.balance = balance;
-		this.status = status;
-	}
-
 	public void setStudentID(String studentID) {
 		this.studentID = studentID;
 	}

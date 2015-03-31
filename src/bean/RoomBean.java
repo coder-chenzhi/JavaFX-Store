@@ -6,14 +6,6 @@ public class RoomBean {
 	private int volume;
 	private String other;
 
-	public RoomBean(String roomID, String name, int volume, String other) {
-		super();
-		this.roomID = roomID;
-		this.name = name;
-		this.volume = volume;
-		this.other = other;
-	}
-
 	public String getRoomID() {
 		return roomID;
 	}
@@ -44,6 +36,12 @@ public class RoomBean {
 
 	public void setOther(String other) {
 		this.other = other;
+	}
+
+	@Override
+	public String toString() {
+		return "RoomBean [roomID=" + roomID + ", name=" + name + ", volume="
+				+ volume + ", other=" + other + "]";
 	}
 
 }

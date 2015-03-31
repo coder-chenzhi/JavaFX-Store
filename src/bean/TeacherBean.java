@@ -15,26 +15,6 @@ public class TeacherBean {
 	private String enrollDay;
 	private boolean status;
 
-	public TeacherBean(String teacherID, String realName, String sex,
-			String birthday, String major, String level, String education,
-			String school, String identifyCard, String phone, String address,
-			String enrollDay, boolean status) {
-		super();
-		this.teacherID = teacherID;
-		this.realName = realName;
-		this.sex = sex;
-		this.birthday = birthday;
-		this.major = major;
-		this.level = level;
-		this.education = education;
-		this.school = school;
-		this.identifyCard = identifyCard;
-		this.phone = phone;
-		this.address = address;
-		this.enrollDay = enrollDay;
-		this.status = status;
-	}
-
 	public String getTeacherID() {
 		return teacherID;
 	}

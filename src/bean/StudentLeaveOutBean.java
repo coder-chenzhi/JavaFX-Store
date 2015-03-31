@@ -8,17 +8,6 @@ public class StudentLeaveOutBean {
 	private String endTime;
 	private String other;
 
-	public StudentLeaveOutBean(String teacherID, String startDate,
-			String startTime, String endDate, String endTime, String other) {
-		super();
-		this.studentID = teacherID;
-		this.startDate = startDate;
-		this.startTime = startTime;
-		this.endDate = endDate;
-		this.endTime = endTime;
-		this.other = other;
-	}
-
 	public String getTeacherID() {
 		return studentID;
 	}

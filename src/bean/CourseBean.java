@@ -13,23 +13,6 @@ public class CourseBean {
 	private int volume;
 	private String other;
 
-	public CourseBean(String courseID, String teacherID, String launchDate,
-			String launchTime, float length, String type, String instrument,
-			String roomID, float expense, int volume, String other) {
-		super();
-		this.courseID = courseID;
-		this.teacherID = teacherID;
-		this.launchDate = launchDate;
-		this.launchTime = launchTime;
-		this.length = length;
-		this.type = type;
-		this.instrument = instrument;
-		this.roomID = roomID;
-		this.expense = expense;
-		this.volume = volume;
-		this.other = other;
-	}
-
 	public String getCourseID() {
 		return courseID;
 	}

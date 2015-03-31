@@ -5,13 +5,6 @@ public class CourseRecordBean {
 	private String StudentID;
 	private String Status;
 
-	public CourseRecordBean(String courseID, String studentID, String status) {
-		super();
-		CourseID = courseID;
-		StudentID = studentID;
-		Status = status;
-	}
-
 	public String getCourseID() {
 		return CourseID;
 	}

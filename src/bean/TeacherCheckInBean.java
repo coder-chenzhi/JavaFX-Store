@@ -6,15 +6,6 @@ public class TeacherCheckInBean {
 	private String checkTime;
 	private String type;
 
-	public TeacherCheckInBean(String teacherID, String checkDate,
-			String checkTime, String type) {
-		super();
-		this.teacherID = teacherID;
-		this.checkDate = checkDate;
-		this.checkTime = checkTime;
-		this.type = type;
-	}
-
 	public String getTeacherID() {
 		return teacherID;
 	}
@@ -45,6 +36,13 @@ public class TeacherCheckInBean {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	@Override
+	public String toString() {
+		return "TeacherCheckInBean [teacherID=" + teacherID + ", checkDate="
+				+ checkDate + ", checkTime=" + checkTime + ", type=" + type
+				+ "]";
 	}
 
 }

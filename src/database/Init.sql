@@ -99,3 +99,10 @@ CREATE TABLE studentLeaveOut (
 	other Text,
 	Primary Key(StudentID,StartDate,StartTime)
 );
+
+CREATE TABLE pass (
+	id Int,
+	type Varchar(16),
+	password Text,
+	Primary Key(id, type) 
+);

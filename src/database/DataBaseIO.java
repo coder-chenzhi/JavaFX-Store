@@ -73,6 +73,7 @@ public class DataBaseIO {
 				pstmt.setObject(i + 1, params[i]);
 			}
 			// ÷¥––SQL Server”Ôæ‰
+			System.out.println("Prepare to execute:" + pstmt.toString());
 			pstmt.execute();
 
 		} catch (SQLException e) {
@@ -97,6 +98,7 @@ public class DataBaseIO {
 				pstmt.setObject(i + 1, params[i]);
 			}
 			// ÷¥––SQL Server”Ôæ‰
+			System.out.println("Prepare to execute:" + pstmt.toString());
 			rs = pstmt.executeQuery();
 			// conn.close();
 		} catch (SQLException e) {
