@@ -1,7 +1,7 @@
 package bean;
 
 public class StudentBean {
-	private String studentID;
+	private int studentID;
 	private String realName;
 	private String sex;
 	private String birthday;
@@ -11,12 +11,20 @@ public class StudentBean {
 	private String classGrade;
 	private String hobby;
 	private String instrument;
-
-	public String getStudentID() {
+	private String parentsName;
+	private String phone;
+	private String address;
+	private String enrollDay;
+	private String classType;
+	private double balance;
+	private boolean status;
+	private String other;
+	
+	public int getStudentID() {
 		return studentID;
 	}
 
-	public void setStudentID(String studentID) {
+	public void setStudentID(int studentID) {
 		this.studentID = studentID;
 	}
 
@@ -140,7 +148,7 @@ public class StudentBean {
 		this.balance = balance;
 	}
 
-	public boolean isStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 
@@ -148,12 +156,25 @@ public class StudentBean {
 		this.status = status;
 	}
 
-	private String parentsName;
-	private String phone;
-	private String address;
-	private String enrollDay;
-	private String classType;
-	private double balance;
-	private boolean status;
+
+	public String getOther() {
+		return other;
+	}
+
+	public void setOther(String other) {
+		this.other = other;
+	}
+
+	@Override
+	public String toString() {
+		return "StudentBean [studentID=" + studentID + ", realName=" + realName
+				+ ", sex=" + sex + ", birthday=" + birthday + ", major="
+				+ major + ", level=" + level + ", school=" + school
+				+ ", classGrade=" + classGrade + ", hobby=" + hobby
+				+ ", instrument=" + instrument + ", parentsName=" + parentsName
+				+ ", phone=" + phone + ", address=" + address + ", enrollDay="
+				+ enrollDay + ", classType=" + classType + ", balance="
+				+ balance + ", status=" + status + ", other=" + other + "]\n";
+	}
 
 }

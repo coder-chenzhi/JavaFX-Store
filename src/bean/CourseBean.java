@@ -1,56 +1,57 @@
 package bean;
 
 public class CourseBean {
-	private String courseID;
-	private String teacherID;
-	private String launchDate;
-	private String launchTime;
-	private float length;
+	private int courseID;
+	private int teacherID;
+	private int roomID;
+	private int periodID;
+	private String startDate;
+	private int week;
 	private String type;
 	private String instrument;
-	private String roomID;
-	private float expense;
+	private double expense;
 	private int volume;
+	private int selected;
 	private String other;
 
-	public String getCourseID() {
+	public int getCourseID() {
 		return courseID;
 	}
 
-	public void setCourseID(String courseID) {
+	public void setCourseID(int courseID) {
 		this.courseID = courseID;
 	}
 
-	public String getTeacherID() {
+	public int getTeacherID() {
 		return teacherID;
 	}
 
-	public void setTeacherID(String teacherID) {
+	public void setTeacherID(int teacherID) {
 		this.teacherID = teacherID;
 	}
 
-	public String getLaunchDate() {
-		return launchDate;
+	public String getStartDate() {
+		return startDate;
 	}
 
-	public void setLaunchDate(String launchDate) {
-		this.launchDate = launchDate;
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
 	}
 
-	public String getLaunchTime() {
-		return launchTime;
+	public int getPeriod() {
+		return periodID;
 	}
 
-	public void setLaunchTime(String launchTime) {
-		this.launchTime = launchTime;
+	public void setPeriod(int periodTime) {
+		this.periodID = periodTime;
 	}
 
-	public float getLength() {
-		return length;
+	public float getWeek() {
+		return week;
 	}
 
-	public void setLength(float length) {
-		this.length = length;
+	public void setWeek(int week) {
+		this.week = week;
 	}
 
 	public String getType() {
@@ -69,19 +70,19 @@ public class CourseBean {
 		this.instrument = instrument;
 	}
 
-	public String getRoomID() {
+	public int getRoomID() {
 		return roomID;
 	}
 
-	public void setRoomID(String roomID) {
+	public void setRoomID(int roomID) {
 		this.roomID = roomID;
 	}
 
-	public float getExpense() {
+	public double getExpense() {
 		return expense;
 	}
 
-	public void setExpense(float expense) {
+	public void setExpense(double expense) {
 		this.expense = expense;
 	}
 
@@ -99,6 +100,24 @@ public class CourseBean {
 
 	public void setOther(String other) {
 		this.other = other;
+	}
+
+	public int getSelected() {
+		return selected;
+	}
+
+	public void setSelected(int selected) {
+		this.selected = selected;
+	}
+
+	@Override
+	public String toString() {
+		return "CourseBean [courseID=" + courseID + ", teacherID=" + teacherID
+				+ ", launchDate=" + startDate + ", launchTime=" + periodID
+				+ ", length=" + week + ", type=" + type + ", instrument="
+				+ instrument + ", roomID=" + roomID + ", expense=" + expense
+				+ ", volume=" + volume + ", selected=" + selected + ", other="
+				+ other + "]\n";
 	}
 
 }

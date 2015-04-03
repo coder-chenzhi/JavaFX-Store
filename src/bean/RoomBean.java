@@ -1,16 +1,16 @@
 package bean;
 
 public class RoomBean {
-	private String roomID;
+	private int roomID;
 	private String name;
 	private int volume;
 	private String other;
 
-	public String getRoomID() {
+	public int getRoomID() {
 		return roomID;
 	}
 
-	public void setRoomID(String roomID) {
+	public void setRoomID(int roomID) {
 		this.roomID = roomID;
 	}
 
@@ -41,7 +41,7 @@ public class RoomBean {
 	@Override
 	public String toString() {
 		return "RoomBean [roomID=" + roomID + ", name=" + name + ", volume="
-				+ volume + ", other=" + other + "]";
+				+ volume + ", other=" + other + "]\n";
 	}
 
 }

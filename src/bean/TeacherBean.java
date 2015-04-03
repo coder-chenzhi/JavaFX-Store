@@ -1,7 +1,7 @@
 package bean;
 
 public class TeacherBean {
-	private String teacherID;
+	private int teacherID;
 	private String realName;
 	private String sex;
 	private String birthday;
@@ -15,11 +15,11 @@ public class TeacherBean {
 	private String enrollDay;
 	private boolean status;
 
-	public String getTeacherID() {
+	public int getTeacherID() {
 		return teacherID;
 	}
 
-	public void setTeacherID(String teacherID) {
+	public void setTeacherID(int teacherID) {
 		this.teacherID = teacherID;
 	}
 
@@ -111,12 +111,22 @@ public class TeacherBean {
 		this.enrollDay = enrollDay;
 	}
 
-	public boolean isStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+
+	@Override
+	public String toString() {
+		return "TeacherBean [teacherID=" + teacherID + ", realName=" + realName
+				+ ", sex=" + sex + ", birthday=" + birthday + ", major="
+				+ major + ", level=" + level + ", education=" + education
+				+ ", school=" + school + ", identifyCard=" + identifyCard
+				+ ", phone=" + phone + ", address=" + address + ", enrollDay="
+				+ enrollDay + ", status=" + status + "]\n";
 	}
 
 }

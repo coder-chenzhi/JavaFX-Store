@@ -1,31 +1,39 @@
 package bean;
 
 public class CourseRecordBean {
-	private String CourseID;
-	private String StudentID;
-	private String Status;
+	private int CourseID;
+	private int StudentID;
+	private int Status;
 
-	public String getCourseID() {
+	public int getCourseID() {
 		return CourseID;
 	}
 
-	public void setCourseID(String courseID) {
+	public void setCourseID(int courseID) {
 		CourseID = courseID;
 	}
 
-	public String getStudentID() {
+	public int getStudentID() {
 		return StudentID;
 	}
 
-	public void setStudentID(String studentID) {
+	public void setStudentID(int studentID) {
 		StudentID = studentID;
 	}
 
-	public String getStatus() {
+	public int getStatus() {
 		return Status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(int status) {
 		Status = status;
 	}
+
+	@Override
+	public String toString() {
+		return "CourseRecordBean [CourseID=" + CourseID + ", StudentID="
+				+ StudentID + ", Status=" + Status + "]\n";
+	}
+	
+	
 }

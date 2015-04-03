@@ -1,16 +1,16 @@
 package bean;
 
 public class TeacherCheckInBean {
-	private String teacherID;
+	private int teacherID;
 	private String checkDate;
 	private String checkTime;
 	private String type;
 
-	public String getTeacherID() {
+	public int getTeacherID() {
 		return teacherID;
 	}
 
-	public void setTeacherID(String teacherID) {
+	public void setTeacherID(int teacherID) {
 		this.teacherID = teacherID;
 	}
 

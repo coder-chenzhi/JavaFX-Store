@@ -1,20 +1,30 @@
 package util;
 
-import java.time.ZonedDateTime;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class Time {
 	public static String getDate() {
-		return ZonedDateTime.now().toLocalDate().toString().replace("-", "");
+		DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+		Calendar cal = Calendar.getInstance();
+		return dateFormat.format(cal.getTime());
 	}
 	
 	public static String getTime() {
-		String time = ZonedDateTime.now().toLocalTime().toString();
-		time = time.substring(0, time.indexOf(".")).replace(":", "");
-		return time;
+		DateFormat dateFormat = new SimpleDateFormat("HHmmss");
+		Calendar cal = Calendar.getInstance();
+		return dateFormat.format(cal.getTime());
+	}
+	
+	public static String getYear() {
+		Calendar cal = Calendar.getInstance();
+		return String.valueOf(cal.get(Calendar.YEAR));
 	}
 	
 	public static void main(String[] args) {
 		System.out.println(Time.getDate());
 		System.out.println(Time.getTime());
+		System.out.println(Time.getYear());
 	}
 }

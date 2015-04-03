@@ -19,7 +19,7 @@ public class DataBaseIO {
 	 * 关闭数据库
 	 */
 	public void close() {
-		System.out.println("Closing the connection.");
+		//System.out.println("Closing the connection.");
 		try {
 			if (rs != null) {
 
@@ -45,18 +45,18 @@ public class DataBaseIO {
 	private Connection getConnetion() {
 		// 连接数据库
 		try {
-			System.out.println("Loading driver...");
+			//System.out.println("Loading driver...");
 			Class.forName("com.mysql.jdbc.Driver");
-			System.out.println("Driver loaded!");
+			//System.out.println("Driver loaded!");
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException(
 					"Cannot find the driver in the classpath!", e);
 		}
 
 		try {
-			System.out.println("Connecting database...");
+			//System.out.println("Connecting database...");
 			conn = DriverManager.getConnection(url, username, password);
-			System.out.println("Database connected!");
+			//System.out.println("Database connected!");
 		} catch (SQLException e) {
 			throw new RuntimeException("Cannot connect the database!", e);
 		}

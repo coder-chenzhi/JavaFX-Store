@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import database.DataBaseIO;
-import util.ConvertID;
 import util.Time;
 
 public class TeacherCheckInOpr {
@@ -16,7 +15,7 @@ public class TeacherCheckInOpr {
 	 * @param record 打卡信息
 	 */
 	public static void insertRecord(TeacherCheckInBean record) {
-		Object params[] = { Integer.parseInt(record.getTeacherID()), record.getCheckDate(),
+		Object params[] = { record.getTeacherID(), record.getCheckDate(),
 				record.getCheckTime(), record.getType() };
 		String sql = "insert into teacherCheckIn "
 				+ "(teacherID, checkDate, checkTime, Type) values(?,?,?,?)";
@@ -26,10 +25,10 @@ public class TeacherCheckInOpr {
 	
 	/**
 	 * 返回某一教师某一时间段的打卡记录
-	 * @param id 教师ID
+	 * @param teacherID 教师ID
 	 * @return 某一教师某一时间段的打卡记录
 	 */
-	public static ArrayList<TeacherCheckInBean> getRecordByIDAndTime(String id, 
+	public static ArrayList<TeacherCheckInBean> getRecordByIDAndTime(String teacherID, 
 			String startDate, String startTime, String endDate, String endTime) {
 		
 		String minDate = "00000000";
@@ -52,7 +51,7 @@ public class TeacherCheckInOpr {
 			endTime = maxTime;
 		}
 		
-		Object params[] = {id ,startDate, startTime, endDate, endTime};
+		Object params[] = {teacherID ,startDate, startTime, endDate, endTime};
 		String sql = "select * from teacherCheckIn where teacherID = ? "
 				+ "and checkDate >= ? and checkTime >= ? and checkDate <= ? and checkTime <= ?";
 		ResultSet rs = db.executeSqlWithResult(sql, params);
@@ -61,7 +60,7 @@ public class TeacherCheckInOpr {
 			while (rs.next()) {
 
 				TeacherCheckInBean record = new TeacherCheckInBean();
-				record.setTeacherID(ConvertID.convertToString(rs.getInt("teacherID"), 3));
+				record.setTeacherID(rs.getInt("teacherID"));
 				record.setCheckDate(rs.getString("CheckDate"));
 				record.setCheckTime(rs.getString("CheckTime"));
 				record.setType(rs.getString("Type"));
@@ -82,13 +81,13 @@ public class TeacherCheckInOpr {
 	/**
 	 * 某教师最近的一条打卡记录，以确定打卡是否规范
 	 * 比如应该打上班的卡，误打了下班的卡，插入记录之前要提示
-	 * @param id 教师ID
+	 * @param teacherID 教师ID
 	 * @return 最近一条打卡记录
 	 */
-	public static TeacherCheckInBean getLastRecordByID(String id) {
+	public static TeacherCheckInBean getLastRecordByID(int teacherID) {
 		TeacherCheckInBean record = new TeacherCheckInBean();
 		
-		Object params[] = {id};
+		Object params[] = {teacherID};
 		String sql = "select * from teacherCheckIn where teacherID=? "
 				+ "order by checkDate desc, checkTime desc limit 1";
 		
@@ -97,7 +96,7 @@ public class TeacherCheckInOpr {
 		try {
 			while (rs.next()) {
 
-				record.setTeacherID(ConvertID.convertToString(rs.getInt("teacherID"), 3));
+				record.setTeacherID(rs.getInt("teacherID"));
 				record.setCheckDate(rs.getString("CheckDate"));
 				record.setCheckTime(rs.getString("CheckTime"));
 				record.setType(rs.getString("Type"));
@@ -130,7 +129,7 @@ public class TeacherCheckInOpr {
 			while (rs.next()) {
 
 				TeacherCheckInBean record = new TeacherCheckInBean();
-				record.setTeacherID(ConvertID.convertToString(rs.getInt("teacherID"), 3));
+				record.setTeacherID(rs.getInt("teacherID"));
 				record.setCheckDate(rs.getString("CheckDate"));
 				record.setCheckTime(rs.getString("CheckTime"));
 				record.setType(rs.getString("Type"));

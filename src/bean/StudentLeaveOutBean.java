@@ -1,18 +1,18 @@
 package bean;
 
 public class StudentLeaveOutBean {
-	private String studentID;
+	private int studentID;
 	private String startDate;
 	private String startTime;
 	private String endDate;
 	private String endTime;
 	private String other;
 
-	public String getTeacherID() {
+	public int getTeacherID() {
 		return studentID;
 	}
 
-	public void setTeacherID(String teacherID) {
+	public void setTeacherID(int teacherID) {
 		this.studentID = teacherID;
 	}
 

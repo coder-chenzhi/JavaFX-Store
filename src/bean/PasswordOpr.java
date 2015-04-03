@@ -8,13 +8,24 @@ import database.DataBaseIO;
 public class PasswordOpr {
 	static DataBaseIO db = new DataBaseIO();
 	
-	public static void insert(PasswordBean pass) {
+	/**
+	 * 插入新的密码记录
+	 * @param pass 要插入的密码记录
+	 */
+	public static void insertPass(PasswordBean pass) {
 		Object params[] = { Integer.parseInt(pass.getID()), pass.getType(), pass.getPassword()};
 		String sql = "insert into pass "
 				+ "(id, type, password) values(?,?,?)";
 		db.executeSqlWithoutResult(sql, params);
 	}
 	
+	
+	/**
+	 * 获取密码
+	 * @param id 用户ID
+	 * @param type 用户类型（教师、管理员）
+	 * @return 密码
+	 */
 	public static String getPasswordByID(String id, String type) {
 		String pass = "";
 		Object params[] = {Integer.parseInt(id), type};
@@ -37,6 +48,13 @@ public class PasswordOpr {
 		return pass;
 	}
 	
+	
+	/**
+	 * 修改密码
+	 * @param id 用户ID
+	 * @param type 用户类型
+	 * @param password 密码
+	 */
 	public static void updatePassword(String id, String type, String password) {
 		Object params[] = { password, Integer.parseInt(id), type };
 		String sql = "update pass set password = ? where id = ? and type = ? ";
