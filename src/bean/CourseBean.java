@@ -4,9 +4,9 @@ public class CourseBean {
 	private int courseID;
 	private int teacherID;
 	private int roomID;
-	private int periodID;
+	private String periodID;
 	private String startDate;
-	private int week;
+	private int weeks;
 	private String type;
 	private String instrument;
 	private double expense;
@@ -38,20 +38,20 @@ public class CourseBean {
 		this.startDate = startDate;
 	}
 
-	public int getPeriod() {
+	public String getPeriod() {
 		return periodID;
 	}
 
-	public void setPeriod(int periodTime) {
+	public void setPeriod(String periodTime) {
 		this.periodID = periodTime;
 	}
 
-	public float getWeek() {
-		return week;
+	public int getWeeks() {
+		return weeks;
 	}
 
-	public void setWeek(int week) {
-		this.week = week;
+	public void setWeeks(int weeks) {
+		this.weeks = weeks;
 	}
 
 	public String getType() {
@@ -113,9 +113,9 @@ public class CourseBean {
 	@Override
 	public String toString() {
 		return "CourseBean [courseID=" + courseID + ", teacherID=" + teacherID
-				+ ", launchDate=" + startDate + ", launchTime=" + periodID
-				+ ", length=" + week + ", type=" + type + ", instrument="
-				+ instrument + ", roomID=" + roomID + ", expense=" + expense
+				+ ", roomID=" + roomID + ", periodID=" + periodID
+				+ ", startDate=" + startDate + ", weeks=" + weeks + ", type="
+				+ type + ", instrument=" + instrument + ", expense=" + expense
 				+ ", volume=" + volume + ", selected=" + selected + ", other="
 				+ other + "]\n";
 	}

@@ -1,12 +1,13 @@
 package bean;
 
-public class Classes {
+public class ClassBean {
 	private int courseID;
 	private int classID;
 	private int teacherID;
 	private String onDate;
-	private int periodID;
+	private String periodID;
 	private int roomID;
+	private String status;
 
 	public int getCourseID() {
 		return courseID;
@@ -40,11 +41,11 @@ public class Classes {
 		this.onDate = onDate;
 	}
 
-	public int getPeriodID() {
+	public String getPeriodID() {
 		return periodID;
 	}
 
-	public void setPeriodID(int periodID) {
+	public void setPeriodID(String periodID) {
 		this.periodID = periodID;
 	}
 
@@ -56,11 +57,20 @@ public class Classes {
 		this.roomID = roomID;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
-		return "Classes [courseID=" + courseID + ", classID=" + classID
+		return "ClassBean [courseID=" + courseID + ", classID=" + classID
 				+ ", teacherID=" + teacherID + ", onDate=" + onDate
-				+ ", periodID=" + periodID + ", roomID=" + roomID + "]\n";
+				+ ", periodID=" + periodID + ", roomID=" + roomID + ", status="
+				+ status + "]\n";
 	}
 
 }

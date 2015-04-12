@@ -61,7 +61,7 @@ CREATE TABLE Courses (
 	courseID INT,
 	teacherID INT NOT NULL,
 	startDate VARCHAR(8) NOT NULL,
-	periodID INT NOT NULL,
+	periodID VARCHAR(255) NOT NULL,
 	roomID INT NOT NULL,
 	weeks INT NOT NULL,
 	type VARCHAR(255) NOT NULL,
@@ -83,8 +83,9 @@ CREATE TABLE Classes(
 	classID INT,
 	teacherID INT,
 	onDate VARCHAR(8),
-	periodID INT,
+	periodID VARCHAR(255),
 	roomID INT,
+	status VARCHAR(255),
 	PRIMARY KEY (courseID, classID)
 	/*
 	FOREIGN KEY (courseID) REFERENCES Courses(courseID),
@@ -94,7 +95,7 @@ CREATE TABLE Classes(
 	*/
 );
 
-CREATE TABLE CourseRecords (
+CREATE TABLE ClassRecords (
 	courseID INT,
 	classID INT,
 	studentID INT,
@@ -106,6 +107,7 @@ CREATE TABLE CourseRecords (
 	FOREIGN KEY (classID) REFERENCES Classes(classID)
 	*/
 );
+
 
 CREATE TABLE TeacherCheckIn (
 	teacherID INT,
@@ -146,7 +148,7 @@ CREATE TABLE StudentLeaveOut (
 
 CREATE TABLE Pass (
 	id INT,
-	type VARCHAR(16),
+	type VARCHAR(255),
 	password TEXT,
 	PRIMARY KEY(id, type) 
 );

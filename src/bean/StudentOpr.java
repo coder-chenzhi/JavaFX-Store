@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import util.Time;
+import util.Generator;
 import database.DataBaseIO;
 
 public class StudentOpr {
@@ -282,18 +283,15 @@ public class StudentOpr {
 
 	public static void main(String[] args) {
 //		StudentBean student = new StudentBean();
-//		student.setRealName("缚虎易");
-//		student.setMajor("吉他");
-//		student.setSex("F");
-//		student.setLevel("五级");
-//		student.setEnrollDay("20130305");
-//		student.setStatus(false);
-//		insertStudent(student);
-//		StudentBean s = getStudentByID(20150001);
-//		System.out.println(s);
-//		updateBalance(20150001, 100);
-//		updateStudent(s);
-//		System.out.println(getNextStudentID());
-		System.out.println(getAllStudents(0));
+//		int num = 10;
+//		for(int i = 0; i < num; i++) {
+//			student.setRealName(Generator.nameGenerator());
+//			student.setMajor(Generator.instrumentGenerator());
+//			student.setSex(Generator.sexGenerator());
+//			student.setEnrollDay(Generator.dayGenerator("19900101", "19950101"));
+//			student.setStatus(Generator.booleanGenerator());
+//			insertStudent(student);
+//		}
+		System.out.println(getAllStudents(2));
 	}
 }

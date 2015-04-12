@@ -2,34 +2,25 @@ package bean;
 
 import java.util.ArrayList;
 
+import util.Generator;
+
 public class StudentOprTest {
-	
-	public static ArrayList<StudentBean> studentGenerator() {
-		ArrayList<StudentBean> students = new ArrayList<>();
-		ArrayList<String> names = new ArrayList<>();
-		names.add("李大钊");
-		return students;
-		
-	}
 	
 	public static void testInsert() {
 		StudentBean student = new StudentBean();
-		student.setRealName("李大钊");
-		student.setMajor("吉他");
-		student.setSex("F");
-		student.setLevel("五级");
-		student.setEnrollDay("20120305");
-		student.setStatus(false);
-		StudentOpr.insertStudent(student);
-		student.setRealName("王思成");
-		student.setMajor("大提琴");
-		student.setSex("F");
-		student.setLevel("四级");
-		student.setEnrollDay("20140305");
-		student.setStatus(true);
+		int num = 20;
+		for (int i = 0; i < num; i++) {
+			student.setRealName(Generator.nameGenerator());
+			student.setSex(Generator.sexGenerator());
+			student.setMajor(Generator.instrumentGenerator());
+			student.setBalance(0);
+			student.setEnrollDay(Generator.dayGenerator("20120101", "20150404"));
+			student.setStatus(Generator.booleanGenerator());
+			StudentOpr.insertStudent(student);
+		}
 	}
 	
 	public static void main(String[] args) {
-		
+		testInsert();	
 	}
 }

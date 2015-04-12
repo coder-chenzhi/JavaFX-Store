@@ -1,7 +1,7 @@
 package bean;
 
 public class PasswordBean {
-	private String id;
+	private int id;
 	private String type;
 	private String password;
 	
@@ -9,10 +9,10 @@ public class PasswordBean {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public String getID() {
+	public int getID() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getType() {

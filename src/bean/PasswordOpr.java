@@ -13,7 +13,7 @@ public class PasswordOpr {
 	 * @param pass 要插入的密码记录
 	 */
 	public static void insertPass(PasswordBean pass) {
-		Object params[] = { Integer.parseInt(pass.getID()), pass.getType(), pass.getPassword()};
+		Object params[] = { pass.getID(), pass.getType(), pass.getPassword()};
 		String sql = "insert into pass "
 				+ "(id, type, password) values(?,?,?)";
 		db.executeSqlWithoutResult(sql, params);
@@ -26,10 +26,10 @@ public class PasswordOpr {
 	 * @param type 用户类型（教师、管理员）
 	 * @return 密码
 	 */
-	public static String getPasswordByID(String id, String type) {
+	public static String getPasswordByID(int id, String type) {
 		String pass = "";
-		Object params[] = {Integer.parseInt(id), type};
-		String sql = "select * from pass where id = ? and type = ?";
+		Object params[] = {id, type};
+		String sql = "select password from pass where id = ? and type = ?";
 		ResultSet rs = db.executeSqlWithResult(sql, params);
 
 		try {
@@ -55,8 +55,8 @@ public class PasswordOpr {
 	 * @param type 用户类型
 	 * @param password 密码
 	 */
-	public static void updatePassword(String id, String type, String password) {
-		Object params[] = { password, Integer.parseInt(id), type };
+	public static void updatePassword(int id, String type, String password) {
+		Object params[] = { password, id, type };
 		String sql = "update pass set password = ? where id = ? and type = ? ";
 		db.executeSqlWithoutResult(sql, params);
 	}
@@ -67,7 +67,5 @@ public class PasswordOpr {
 //		pass.setType("教师");
 //		pass.setPassword("123456");
 //		insert(pass);
-		updatePassword("002", "教师", "123");
-		System.out.println(getPasswordByID("002", "教师"));
 	}
 }

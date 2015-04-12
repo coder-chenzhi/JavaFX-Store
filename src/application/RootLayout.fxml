@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="720.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MenuController">
+   <top>
+      <MenuBar onMouseClicked="#processMenuClick" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="系统">
+            <items>
+              <MenuItem fx:id="quit" mnemonicParsing="false" onAction="#processMenuClick" text="退出" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="档案管理">
+            <items>
+              <MenuItem fx:id="students" mnemonicParsing="false" onAction="#processMenuClick" text="学生档案" />
+                  <MenuItem fx:id="teachers" mnemonicParsing="false" onAction="#processMenuClick" text="教师档案" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="课程管理">
+            <items>
+              <MenuItem fx:id="searchCourses" mnemonicParsing="false" onAction="#processMenuClick" text="查看课程" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="考勤">
+              <items>
+                <MenuItem fx:id="teacherCheckIn" mnemonicParsing="false" onAction="#processMenuClick" text="教师考勤" />
+                  <MenuItem fx:id="teacherLeaveOut" mnemonicParsing="false" onAction="#processMenuClick" text="教师请假" />
+                  <MenuItem fx:id="studentLeaveOut" mnemonicParsing="false" onAction="#processMenuClick" text="学生请假" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="工具">
+              <items>
+                <MenuItem fx:id="calculator" mnemonicParsing="false" onAction="#processMenuClick" text="计算器" />
+                  <MenuItem fx:id="notepad" mnemonicParsing="false" onAction="#processMenuClick" text="记事本" />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <TabPane fx:id="tabs" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+        </tabs>
+      </TabPane>
+   </center>
+</BorderPane>

@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import util.Generator;
 import util.Time;
 import database.DataBaseIO;
 
@@ -284,20 +285,15 @@ public class TeacherOpr {
 
 	public static void main(String[] args) {
 //		TeacherBean teacher = new TeacherBean();
-//		teacher.setSex("女");
-//		teacher.setRealName("冯老师");
-//		teacher.setMajor("钢琴");
-//		teacher.setEnrollDay("20140510");
-//		teacher.setStatus(true);
-//		insertTeacher(teacher);
-//		System.out.println(getTeacherByName("王"));
-//		System.out.println(getAllTeachers(1));
-
-//		TeacherBean t = getTeacherByID(2015001);
-//		System.out.println(t);
-//		t.setSex("女");
-//		updateTeacher(t);
-//		System.out.println(getTeacherByID(2015001));
-		System.out.println(getTeacherByMajor("钢琴", 2));
+//		int num = 5;
+//		for(int i = 0; i < num; i++) {
+//			teacher.setRealName(Generator.nameGenerator());
+//			teacher.setMajor(Generator.instrumentGenerator());
+//			teacher.setSex(Generator.sexGenerator());
+//			teacher.setEnrollDay(Generator.dayGenerator("19900101", "19950101"));
+//			teacher.setStatus(Generator.booleanGenerator());
+//			insertTeacher(teacher);
+//		}
+		System.out.println(getAllTeachers(2));
 	}
 }
