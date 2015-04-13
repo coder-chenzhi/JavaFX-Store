@@ -160,7 +160,7 @@ public class StudentProfileController extends AnchorPane implements
 		classType.setPromptText("«Î—°‘Ò");
 		classType.setItems(classStrings);
 		status.setId("uneditable-combobox");
-		status.setPromptText("Make a choice...");
+		status.setPromptText("«Î—°‘Ò");
 		status.setItems(statusStrings);
 	}
 	

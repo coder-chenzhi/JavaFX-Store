@@ -69,6 +69,35 @@ public class StudentsController extends BorderPane implements Initializable{
             tableView.getColumns().add(col);
         }
 		
+		add.setOnAction(event -> {
+			Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            // OR
+            // System.out.println(stageTheEventSourceNodeBelongs);
+            // Stage stageTheLabelBelongs = (Stage) label.getScene().getWindow();
+            // System.out.println(stageTheLabelBelongs);
+            // these two of them return the same stage
+            // Swap screen
+			StudentBean rowData = null;
+            Stage popup = new Stage();
+            StudentProfileController studentProfileCtrl = null;
+            AnchorPane page = null;
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("StudentProfile.fxml"));
+			try {
+	            page = (AnchorPane) loader.load();
+	            studentProfileCtrl = (StudentProfileController) loader.getController();
+	            studentProfileCtrl.setStudent(rowData);
+	            studentProfileCtrl.setStudentController(this);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            popup.initModality(Modality.WINDOW_MODAL);
+            popup.setScene(new Scene(page));
+            popup.initOwner(stageTheEventSourceNodeBelongs);
+            popup.show();
+		});
+		
 		search.setOnAction(event -> {
 			Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)event.getSource()).getScene().getWindow();
 	        // OR
