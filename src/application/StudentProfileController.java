@@ -20,7 +20,9 @@ import javafx.scene.control.TextField;
 
 public class StudentProfileController extends AnchorPane implements
 		Initializable {
-
+	
+	private boolean isUpdate;
+	
 	@FXML
 	private TextField studentID;
 
@@ -94,11 +96,13 @@ public class StudentProfileController extends AnchorPane implements
 
 	public void setStudent(StudentBean student) {
 		if (student == null) {
+			isUpdate = false;
 			this.student = new StudentBean();
 			
 			this.student.setStudentID(StudentOpr.getNextStudentID());
 			studentID.setText(String.valueOf(StudentOpr.getNextStudentID()));
 		} else {
+			isUpdate = true;
 			this.student = student;
 			
 			System.out.println("Student Profile Page:\n" + this.student);
@@ -197,6 +201,12 @@ public class StudentProfileController extends AnchorPane implements
 		
 		//System.out.println("Press Save!!!");
 		this.studentController.refresh();
+		if (isUpdate) {
+			StudentOpr.updateStudent(student);
+		} else {
+			StudentOpr.insertStudent(student);
+		}
+		
 	}
 	
 	public static void main(String[] args) {

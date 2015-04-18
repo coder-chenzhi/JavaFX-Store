@@ -14,6 +14,15 @@ public class TeacherBean {
 	private String address;
 	private String enrollDay;
 	private boolean status;
+	private String other;
+	
+	public String getOther() {
+		return other;
+	}
+
+	public void setOther(String other) {
+		this.other = other;
+	}
 
 	public int getTeacherID() {
 		return teacherID;

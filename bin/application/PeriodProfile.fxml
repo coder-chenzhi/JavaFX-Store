@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="175.0" prefWidth="582.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PeriodProfileController">
+   <children>
+      <Label layoutX="30.0" layoutY="30.0" text="时段名：" />
+      <Label layoutX="200.0" layoutY="30.0" text="起始时间：" />
+      <TextField fx:id="periodID" layoutX="90.0" layoutY="30.0" prefHeight="23.0" prefWidth="96.0" />
+      <Button layoutX="90.0" layoutY="100.0" mnemonicParsing="false" onAction="#processSave" prefHeight="25.0" prefWidth="60.0" text="保存" />
+      <Button layoutX="336.0" layoutY="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="退出" />
+      <Label layoutX="370.0" layoutY="30.0" text="结束时间：" />
+      <TextField fx:id="startTime" layoutX="260.0" layoutY="30.0" prefHeight="23.0" prefWidth="96.0" />
+      <TextField fx:id="endTime" layoutX="430.0" layoutY="30.0" prefHeight="23.0" prefWidth="110.0" />
+   </children>
+</AnchorPane>

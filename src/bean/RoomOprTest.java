@@ -30,7 +30,7 @@ public class RoomOprTest {
 	}
 	
 	public static void main(String[] args) {
-		testInsert();
+		//testInsert();
 		testGetAll();
 	}
 }

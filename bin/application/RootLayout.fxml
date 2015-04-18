@@ -11,6 +11,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="系统">
             <items>
+                  <MenuItem mnemonicParsing="false" onAction="#processMenuClick" text="账户管理" />
               <MenuItem fx:id="quit" mnemonicParsing="false" onAction="#processMenuClick" text="退出" />
             </items>
           </Menu>
@@ -20,9 +21,11 @@
                   <MenuItem fx:id="teachers" mnemonicParsing="false" onAction="#processMenuClick" text="教师档案" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="课程管理">
+          <Menu mnemonicParsing="false" text="教学管理">
             <items>
               <MenuItem fx:id="searchCourses" mnemonicParsing="false" onAction="#processMenuClick" text="查看课程" />
+                  <MenuItem fx:id="manageRooms" mnemonicParsing="false" onAction="#processMenuClick" text="教室管理" />
+                  <MenuItem mnemonicParsing="false" onAction="#processMenuClick" text="时段管理" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="考勤">
@@ -30,6 +33,12 @@
                 <MenuItem fx:id="teacherCheckIn" mnemonicParsing="false" onAction="#processMenuClick" text="教师考勤" />
                   <MenuItem fx:id="teacherLeaveOut" mnemonicParsing="false" onAction="#processMenuClick" text="教师请假" />
                   <MenuItem fx:id="studentLeaveOut" mnemonicParsing="false" onAction="#processMenuClick" text="学生请假" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="报表">
+              <items>
+                <MenuItem fx:id="tableTeacherCheckIn" mnemonicParsing="false" onAction="#processMenuClick" text="教师上课报表" />
+                  <MenuItem fx:id="tableStudentTakeCourse" mnemonicParsing="false" onAction="#processMenuClick" text="学生上课报表" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="工具">

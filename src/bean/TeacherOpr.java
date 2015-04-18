@@ -54,11 +54,11 @@ public class TeacherOpr {
 				teacher.getIdentifyCard(), teacher.getLevel(),
 				teacher.getMajor(), teacher.getPhone(), teacher.getRealName(),
 				teacher.getSchool(), teacher.getSex(), teacher.getStatus(),
-				getNextTeacherID() };
+				teacher.getOther(), getNextTeacherID() };
 		String sql = "insert into Teachers "
 				+ "(address, birthday, education, enrollDay,"
 				+ "identifyCard, level, major, phone, realname,"
-				+ "school, sex, status, teacherID) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "school, sex, status, other, teacherID) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		db.executeSqlWithoutResult(sql, params);
 	}
 
@@ -90,6 +90,7 @@ public class TeacherOpr {
 				teacher.setSchool(rs.getString("school"));
 				teacher.setSex(rs.getString("sex"));
 				teacher.setStatus(rs.getBoolean("status"));
+				teacher.setOther(rs.getString("other"));
 			}
 
 		} catch (SQLException e) {
@@ -150,6 +151,7 @@ public class TeacherOpr {
 				teacher.setSchool(rs.getString("school"));
 				teacher.setSex(rs.getString("sex"));
 				teacher.setStatus(rs.getBoolean("status"));
+				teacher.setOther(rs.getString("other"));
 				teachers.add(teacher);
 			}
 
@@ -194,6 +196,7 @@ public class TeacherOpr {
 				teacher.setSchool(rs.getString("school"));
 				teacher.setSex(rs.getString("sex"));
 				teacher.setStatus(rs.getBoolean("status"));
+				teacher.setOther(rs.getString("other"));
 				teachers.add(teacher);
 			}
 
@@ -251,6 +254,7 @@ public class TeacherOpr {
 				teacher.setSchool(rs.getString("school"));
 				teacher.setSex(rs.getString("sex"));
 				teacher.setStatus(rs.getBoolean("status"));
+				teacher.setOther(rs.getString("other"));
 				teachers.add(teacher);
 			}
 
@@ -276,24 +280,24 @@ public class TeacherOpr {
 				teacher.getIdentifyCard(), teacher.getLevel(),
 				teacher.getMajor(), teacher.getPhone(), teacher.getRealName(),
 				teacher.getSchool(), teacher.getSex(), teacher.getStatus(),
-				teacher.getTeacherID() };
+				teacher.getOther(), teacher.getTeacherID() };
 		String sql = "update Teachers set address = ?, birthday = ?, education = ?, enrollDay = ?,"
 				+ "identifyCard = ?, level = ?, major = ?, phone = ?, realname = ?,"
-				+ "school = ?, sex = ?, status = ? where teacherID = ?";
+				+ "school = ?, sex = ?, status = ?, other = ? where teacherID = ?";
 		db.executeSqlWithoutResult(sql, params);
 	}
 
 	public static void main(String[] args) {
-//		TeacherBean teacher = new TeacherBean();
-//		int num = 5;
-//		for(int i = 0; i < num; i++) {
-//			teacher.setRealName(Generator.nameGenerator());
-//			teacher.setMajor(Generator.instrumentGenerator());
-//			teacher.setSex(Generator.sexGenerator());
-//			teacher.setEnrollDay(Generator.dayGenerator("19900101", "19950101"));
-//			teacher.setStatus(Generator.booleanGenerator());
-//			insertTeacher(teacher);
-//		}
+		// TeacherBean teacher = new TeacherBean();
+		// int num = 5;
+		// for(int i = 0; i < num; i++) {
+		// teacher.setRealName(Generator.nameGenerator());
+		// teacher.setMajor(Generator.instrumentGenerator());
+		// teacher.setSex(Generator.sexGenerator());
+		// teacher.setEnrollDay(Generator.dayGenerator("19900101", "19950101"));
+		// teacher.setStatus(Generator.booleanGenerator());
+		// insertTeacher(teacher);
+		// }
 		System.out.println(getAllTeachers(2));
 	}
 }

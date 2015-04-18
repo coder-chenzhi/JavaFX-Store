@@ -9,7 +9,7 @@ import database.DataBaseIO;
 public class PeriodOpr {
 	static DataBaseIO db = new DataBaseIO();
 
-	public static void insert(PeriodBean period) {
+	public static void insertPeriod(PeriodBean period) {
 		Object params[] = { period.getPeriodID(), period.getStartTime(),
 				period.getEndTime() };
 		String sql = "insert into periods (periodID, startTime, endTime) value (?,?,?)";
@@ -64,7 +64,7 @@ public class PeriodOpr {
 		return period;
 	}
 	
-	public static void update(String periodID, PeriodBean period) {
+	public static void updatePeriod(String periodID, PeriodBean period) {
 		Object params[] = { period.getPeriodID(), period.getStartTime(),
 				period.getEndTime(), periodID };
 		String sql = "update periods set periodID=?, startTime=?, endTime=? where periodID=?";

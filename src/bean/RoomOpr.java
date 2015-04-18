@@ -22,6 +22,13 @@ public class RoomOpr {
 		db.executeSqlWithoutResult(sql, params);
 	}
 
+	public static void updateRoom(RoomBean room) {
+		Object params[] = { room.getName(), room.getVolume(), room.getOther(),
+				room.getRoomID() };
+		String sql = "update rooms set name = ?, volume = ?, other = ? where roomID = ?";
+		db.executeSqlWithoutResult(sql, params);
+	}
+
 	public static RoomBean getRoomByID(int roomID) {
 		RoomBean room = new RoomBean();
 		Object params[] = { roomID };
@@ -45,7 +52,7 @@ public class RoomOpr {
 	}
 
 	public static int getVolumeByID(int roomID) {
-		int volume  = 0;
+		int volume = 0;
 		Object params[] = { roomID };
 		String sql = "select volume from rooms where roomID = ?";
 		ResultSet rs = db.executeSqlWithResult(sql, params);
@@ -63,7 +70,7 @@ public class RoomOpr {
 		}
 		return volume;
 	}
-	
+
 	public static ArrayList<RoomBean> getAllRooms() {
 		ArrayList<RoomBean> rooms = new ArrayList<RoomBean>();
 		Object params[] = {};

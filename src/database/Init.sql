@@ -99,7 +99,7 @@ CREATE TABLE ClassRecords (
 	courseID INT,
 	classID INT,
 	studentID INT,
-	status TEXT NOT NULL,
+	status TEXT NOT NULL, /* 一共有三种状态，“课时未开始”，“请假”，“已上课” */
 	PRIMARY KEY (courseID, studentID)
 	/*
 	FOREIGN KEY (studentID) REFERENCES Students(studentID),
