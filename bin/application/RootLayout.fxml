@@ -23,7 +23,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="教学管理">
             <items>
-              <MenuItem fx:id="searchCourses" mnemonicParsing="false" onAction="#processMenuClick" text="查看课程" />
+              <MenuItem fx:id="searchCourses" mnemonicParsing="false" onAction="#processMenuClick" text="课程管理" />
                   <MenuItem fx:id="manageRooms" mnemonicParsing="false" onAction="#processMenuClick" text="教室管理" />
                   <MenuItem mnemonicParsing="false" onAction="#processMenuClick" text="时段管理" />
             </items>

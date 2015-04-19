@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="243.0" prefWidth="398.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CourseSearchController">
+   <children>
+      <Label layoutX="30.0" layoutY="30.0" text="课程编号：" />
+      <Label layoutX="30.0" layoutY="80.0" text="教师姓名：" />
+      <Label alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="203.0" layoutY="85.0" prefHeight="15.0" prefWidth="60.0" text="乐器种类：" textOverrun="CLIP" />
+      <Label layoutX="203.0" layoutY="30.0" text="教师编号：" />
+      <Label layoutX="30.0" layoutY="128.0" text="课程起始时间：" />
+      <TextField fx:id="courseID" layoutX="90.0" layoutY="30.0" prefHeight="20.0" prefWidth="100.0" />
+      <TextField fx:id="instrument" layoutX="263.0" layoutY="81.0" prefHeight="23.0" prefWidth="103.0" />
+      <TextField fx:id="teacherID" layoutX="263.0" layoutY="30.0" prefHeight="23.0" prefWidth="103.0" />
+      <DatePicker fx:id="startDay" layoutX="30.0" layoutY="148.0" prefHeight="23.0" prefWidth="103.0" />
+      <Button fx:id="submit" layoutX="173.0" layoutY="208.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="确定" />
+      <DatePicker fx:id="endDay" layoutX="174.0" layoutY="148.0" prefHeight="23.0" prefWidth="103.0" />
+      <Label layoutX="147.0" layoutY="148.0" text="至" />
+      <TextField fx:id="teacherName" layoutX="89.0" layoutY="81.0" prefHeight="23.0" prefWidth="103.0" />
+   </children>
+</AnchorPane>

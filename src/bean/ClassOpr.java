@@ -62,6 +62,16 @@ public class ClassOpr {
 	}
 	
 	/**
+	 * 删除某一课程的所有课时
+	 * @param courseID
+	 */
+	public static void deleteByCourseID(int courseID) {
+		Object params[] = {courseID};
+		String sql = "delete from classes where courseID = ?";
+		db.executeSqlWithoutResult(sql, params);
+	}
+	
+	/**
 	 * 清空所有课时
 	 */
 	public static void clear() {
@@ -124,6 +134,7 @@ public class ClassOpr {
 				newClass.setOnDate(rs.getString("onDate"));
 				newClass.setPeriodID(rs.getString("periodID"));
 				newClass.setRoomID(rs.getInt("roomID"));
+				newClass.setStatus(rs.getString("status"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -136,6 +147,11 @@ public class ClassOpr {
 		return newClass;
 	}
 
+	
+	/**
+	 * 返回所有课时
+	 * @return
+	 */
 	public static ArrayList<ClassBean> getAllClasses() {
 		ArrayList<ClassBean> classes = new ArrayList<>();
 		String sql = "select * from classes";

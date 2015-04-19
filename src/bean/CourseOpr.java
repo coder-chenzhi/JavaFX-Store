@@ -12,15 +12,26 @@ public class CourseOpr {
 	static DataBaseIO db = new DataBaseIO();
 
 	public static void insertCourse(CourseBean course) {
-		Object params[] = { getNextCourseID(), course.getTeacherID(),
-				course.getStartDate(), course.getPeriod(), course.getWeeks(),
+		int courseID = getNextCourseID();
+		Object params[] = { courseID, course.getTeacherID(),
+				course.getStartDate(), course.getPeriodID(), course.getWeeks(),
 				course.getType(), course.getInstrument(), course.getRoomID(),
 				course.getExpense(), course.getVolume(), course.getOther(),
 				course.getSelected() };
-		String sql = " insert into courses (courseID, teacherID, startDate, periodID, "
+		String sql = "insert into courses (courseID, teacherID, startDate, periodID, "
 				+ "weeks, type, instrument, roomID, expense, volume, other ,selected)"
 				+ "value (?,?,?,?,?,?,?,?,?,?,?,?)";
 		db.executeSqlWithoutResult(sql, params);
+		
+		/* 增加课时记录 */
+		for (int i = 0; i < course.getWeeks(); i++) {
+			String date = Time.dateAddDay(course.getStartDate(), 7 * i);
+			Object paramsTmp[] = { courseID, i, course.getTeacherID(), date,
+					course.getPeriodID(), course.getRoomID(), "课时未开始"};
+			String sqlTmp = "insert into classes (courseID, classID, teacherID, onDate, "
+					+ "periodID, roomID, status) value (?,?,?,?,?,?,?)";
+			db.executeSqlWithoutResult(sqlTmp, paramsTmp);
+		}
 	}
 
 	public static Boolean updateCourse(CourseBean newCourse) {
@@ -32,7 +43,7 @@ public class CourseOpr {
 			return false;
 		} else {
 			Object params[] = { newCourse.getTeacherID(),
-					newCourse.getStartDate(), newCourse.getPeriod(),
+					newCourse.getStartDate(), newCourse.getPeriodID(),
 					newCourse.getWeeks(), newCourse.getType(),
 					newCourse.getInstrument(), newCourse.getRoomID(),
 					newCourse.getExpense(), newCourse.getVolume(),
@@ -42,20 +53,68 @@ public class CourseOpr {
 					+ "weeks = ?, type = ?, instrument = ?, roomID = ?, expense = ?, volume = ?, other = ?,selected = ? "
 					+ "where courseID = ?";
 			db.executeSqlWithoutResult(sql, params);
+			
+			/* 修改课时记录，方便起见，直接删除重新插入 */
+			ClassOpr.deleteByCourseID(newCourse.getCourseID());
+			insertCourse(newCourse);
 			return true;
 		}
 	}
 
-	public static Boolean deleteCourse(int CourseID) {
-		CourseBean course = getCourseByCourseID(CourseID);
+	public static int getCourseWeeks(int courseID) {
+		Object params[] = {courseID};
+		String sql = "select weeks from courses where courseID = ?";
+		ResultSet rs = db.executeSqlWithResult(sql, params);
+		int weeks = 1;
+		
+		try {
+			while (rs.next()) {
+				weeks = rs.getInt("weeks");
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+
+			db.close();
+		}
+		return weeks;
+	}
+	
+	/**
+	 * 学生选课
+	 * @param courseID 课程ID
+	 * @param studentID 学生ID
+	 */
+	public static void selectCourse(int courseID, int studentID) {
+		int weeks = getCourseWeeks(courseID);
+		ClassRecordBean record = new ClassRecordBean();
+		record.setCourseID(courseID);
+		record.setStudentID(studentID);
+		for (int i = 0; i < weeks; i++) {
+			record.setClassID(i);
+			record.setStatus(ClassOpr.getClassByCourseIDAndClassID(courseID, i).getStatus());
+			ClassRecordOpr.insertRecord(record);
+		}
+	}
+	
+	/**
+	 * 删除课程
+	 * @param courseID
+	 * @return
+	 */
+	public static Boolean deleteCourse(int courseID) {
+		CourseBean course = getCourseByCourseID(courseID);
 		String curTime = util.Time.getDate();
 		if (course.getStartDate().compareTo(curTime) < 0) {
-			System.out.println("不允许删除！" + CourseID + "已经结束或正在进行！！！");
+			System.out.println("不允许删除！" + courseID + "已经结束或正在进行！！！");
 			return false;
 		} else {
-			Object params[] = { CourseID };
+			Object params[] = { courseID };
 			String sql = "delete from courses where courseID = ?";
 			db.executeSqlWithoutResult(sql, params);
+			ClassOpr.deleteByCourseID(courseID);
 			return true;
 		}
 	}
@@ -71,7 +130,7 @@ public class CourseOpr {
 				course.setCourseID(rs.getInt("courseID"));
 				course.setTeacherID(rs.getInt("teacherID"));
 				course.setStartDate(rs.getString("startDate"));
-				course.setPeriod(rs.getString("periodID"));
+				course.setPeriodID(rs.getString("periodID"));
 				course.setWeeks(rs.getInt("weeks"));
 				course.setType(rs.getString("type"));
 				course.setInstrument(rs.getString("instrument"));
@@ -170,7 +229,7 @@ public class CourseOpr {
 				course.setCourseID(rs.getInt("courseID"));
 				course.setTeacherID(rs.getInt("teacherID"));
 				course.setStartDate(rs.getString("startDate"));
-				course.setPeriod(rs.getString("periodID"));
+				course.setPeriodID(rs.getString("periodID"));
 				course.setWeeks(rs.getInt("weeks"));
 				course.setType(rs.getString("type"));
 				course.setInstrument(rs.getString("instrument"));
@@ -277,7 +336,7 @@ public class CourseOpr {
 				course.setCourseID(rs.getInt("courseID"));
 				course.setTeacherID(rs.getInt("teacherID"));
 				course.setStartDate(rs.getString("startDate"));
-				course.setPeriod(rs.getString("periodID"));
+				course.setPeriodID(rs.getString("periodID"));
 				course.setWeeks(rs.getInt("weeks"));
 				course.setType(rs.getString("type"));
 				course.setInstrument(rs.getString("instrument"));
@@ -357,7 +416,7 @@ public class CourseOpr {
 				course.setCourseID(rs.getInt("courseID"));
 				course.setTeacherID(rs.getInt("teacherID"));
 				course.setStartDate(rs.getString("startDate"));
-				course.setPeriod(rs.getString("periodID"));
+				course.setPeriodID(rs.getString("periodID"));
 				course.setWeeks(rs.getInt("weeks"));
 				course.setType(rs.getString("type"));
 				course.setInstrument(rs.getString("instrument"));
@@ -434,7 +493,7 @@ public class CourseOpr {
 				course.setCourseID(rs.getInt("courseID"));
 				course.setTeacherID(rs.getInt("teacherID"));
 				course.setStartDate(rs.getString("startDate"));
-				course.setPeriod(rs.getString("periodID"));
+				course.setPeriodID(rs.getString("periodID"));
 				course.setWeeks(rs.getInt("weeks"));
 				course.setType(rs.getString("type"));
 				course.setInstrument(rs.getString("instrument"));

@@ -30,7 +30,7 @@ public class MenuController extends BorderPane implements Initializable{
 	private MenuItem teachers;
 	
 	@FXML
-	private MenuItem searchCourses;
+	private MenuItem manageCourses;
 	
 	/* 教室管理 */
 	@FXML
@@ -137,6 +137,22 @@ public class MenuController extends BorderPane implements Initializable{
             try {
             	page = (AnchorPane) loader.load();
 				menu = (PeriodsController) loader.getController();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            Tab tab1 = new Tab();
+            tab1.setText("ShowPeriods");
+            tab1.setContent(page);
+            tabs.getTabs().add(tab1);
+		} else if (text.equals("课程管理")) {
+			FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("CoursesMain.fxml"));
+            CoursesController menu = null;
+            AnchorPane page = null;
+            try {
+            	page = (AnchorPane) loader.load();
+				menu = (CoursesController) loader.getController();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

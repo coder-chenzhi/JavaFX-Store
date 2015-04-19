@@ -11,6 +11,6 @@
       <Button fx:id="search" layoutX="80.0" layoutY="17.0" mnemonicParsing="false" text="查询" />
       <TableView fx:id="tableView" layoutX="1.0" layoutY="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="50.0" />
       <Button layoutX="142.0" layoutY="17.0" mnemonicParsing="false" text="刷新" />
-      <Button layoutX="204.0" layoutY="17.0" mnemonicParsing="false" onAction="#clear" text="清空" />
+      <Button layoutX="204.0" layoutY="17.0" mnemonicParsing="false" onAction="#clear" text="清空显示" />
    </children>
 </AnchorPane>

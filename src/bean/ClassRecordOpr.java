@@ -27,13 +27,13 @@ public class ClassRecordOpr {
 	}
 
 	/**
-	 * 批量设置某一课时所有未请假同学的上课状态，从“课时未开始”改为“已上”
+	 * 批量设置某一课时所有未请假同学的上课状态，从“课时未开始”改为“已上课”
 	 * @param courseID
 	 * @param classID
 	 */
 	public static void checkIn(int courseID, int classID) {
 		Object params[] = { courseID, classID };
-		String sql = "update classRecords set status = '已上' where courseID = ? and classID = ? and status = '课时未开始'";
+		String sql = "update classRecords set status = '已上课' where courseID = ? and classID = ? and status = '课时未开始'";
 		db.executeSqlWithoutResult(sql, params);
 	}
 	

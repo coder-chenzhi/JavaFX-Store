@@ -6,33 +6,33 @@ public class CourseOprTest {
 		//已经结束
 		course.setTeacherID(2015001);
 		course.setRoomID(102);
-		course.setPeriod("第二节课");
-		course.setStartDate("20140304");
-		course.setWeeks(16);
+		course.setPeriodID("第二节课");
+		course.setStartDate("20140504");
+		course.setWeeks(10);
 		course.setType("全课");
-		course.setInstrument("钢琴");
+		course.setInstrument("吉他");
 		course.setExpense(1000);
 		course.setVolume(20);
 		CourseOpr.insertCourse(course);
 		//正在上课
 		course.setTeacherID(2015002);
 		course.setRoomID(201);
-		course.setPeriod("第三节课");
-		course.setStartDate("20150304");
+		course.setPeriodID("第一节课");
+		course.setStartDate("20150604");
 		course.setWeeks(4);
 		course.setType("四人课");
 		course.setInstrument("架子鼓");
 		course.setExpense(1000);
-		course.setVolume(40);
+		course.setVolume(4);
 		CourseOpr.insertCourse(course);
 		//还没开始
 		course.setTeacherID(2015002);
 		course.setRoomID(201);
-		course.setPeriod("第二节课");
-		course.setStartDate("20150601");
+		course.setPeriodID("第二节课");
+		course.setStartDate("20150501");
 		course.setWeeks(8);
 		course.setType("两人课");
-		course.setInstrument("钢琴");
+		course.setInstrument("大提琴");
 		course.setExpense(1000);
 		course.setVolume(2);
 		CourseOpr.insertCourse(course);
@@ -72,6 +72,10 @@ public class CourseOprTest {
 		CourseOpr.updateCourse(course);
 	}
 	
+	public static void testSelectCourse(int courseID, int studentID) {
+		CourseOpr.selectCourse(courseID, studentID);
+	}
+	
 	public static void main(String[] args) {
 		//testInsert();
 		//testGetByInstrument("钢琴", 2);
@@ -79,7 +83,9 @@ public class CourseOprTest {
 		//testGetAllInstrument();
 		//testGetByTeacherID(2015001, 3);
 		//testGetCourseByCourseID(20150001);
-		testGetAll(3);
+		//testGetAll(3);
 		//testUpdateCourseByCourseID(20150006);
+		testInsert();
+		//testSelectCourse(20150001, 20150001);
 	}
 }

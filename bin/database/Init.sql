@@ -85,7 +85,7 @@ CREATE TABLE Classes(
 	onDate VARCHAR(8),
 	periodID VARCHAR(255),
 	roomID INT,
-	status VARCHAR(255),
+	status VARCHAR(255), /* 一共有三种状态，“课时未开始”，“教师请假”，“已上课” */
 	PRIMARY KEY (courseID, classID)
 	/*
 	FOREIGN KEY (courseID) REFERENCES Courses(courseID),
@@ -99,8 +99,8 @@ CREATE TABLE ClassRecords (
 	courseID INT,
 	classID INT,
 	studentID INT,
-	status TEXT NOT NULL, /* 一共有三种状态，“课时未开始”，“请假”，“已上课” */
-	PRIMARY KEY (courseID, studentID)
+	status TEXT NOT NULL, /* 一共有三种状态，“课时未开始”，“学生请假”，“已上课” */
+	PRIMARY KEY (courseID, classID, studentID)
 	/*
 	FOREIGN KEY (studentID) REFERENCES Students(studentID),
 	FOREIGN KEY (courseID) REFERENCES Courses(courseID),

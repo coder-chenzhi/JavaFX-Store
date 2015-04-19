@@ -38,11 +38,11 @@ public class CourseBean {
 		this.startDate = startDate;
 	}
 
-	public String getPeriod() {
+	public String getPeriodID() {
 		return periodID;
 	}
 
-	public void setPeriod(String periodTime) {
+	public void setPeriodID(String periodTime) {
 		this.periodID = periodTime;
 	}
 
