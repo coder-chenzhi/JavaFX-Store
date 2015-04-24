@@ -4,8 +4,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import bean.StudentBean;
-import bean.StudentOpr;
+import bean.teach.StudentBean;
+import bean.teach.StudentOpr;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -24,10 +24,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+
+
 public class StudentsController extends BorderPane implements Initializable{
 
 	@FXML
-	private TableView<StudentBean> tableView = new TableView<StudentBean>();
+	private TableView<StudentShow> tableView = new TableView<StudentShow>();
 	
 	@FXML
 	private Button add;
@@ -35,7 +37,7 @@ public class StudentsController extends BorderPane implements Initializable{
 	@FXML
 	private Button search;
 	
-	ObservableList<StudentBean> data = FXCollections.observableArrayList();
+	ObservableList<StudentShow> data = FXCollections.observableArrayList();
 	
 	static final String properties[] = {
 		"studentID",
@@ -43,20 +45,11 @@ public class StudentsController extends BorderPane implements Initializable{
 		"sex",
 		"birthday",
 		"major",
-		"level",
-		"school",
-		"classGrade",
-		"hobby",
-		"instrument",
-		"parentsName",
-		"phone",
-		"address",
 		"enrollDay",
-		"classType",
 		"balance",
-		"status",
-		"other"};
+		"status"};
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -64,7 +57,7 @@ public class StudentsController extends BorderPane implements Initializable{
 		for(int i=0; i<properties.length; i++){
             TableColumn col = new TableColumn(properties[i]);
             col.setCellValueFactory(
-                    new PropertyValueFactory<StudentBean, String>(
+                    new PropertyValueFactory<StudentShow, String>(
                     		properties[i]));
             tableView.getColumns().add(col);
         }
@@ -127,10 +120,10 @@ public class StudentsController extends BorderPane implements Initializable{
 		
 		
         tableView.setRowFactory( tv -> {
-            TableRow<StudentBean> row = new TableRow<>();
+            TableRow<StudentShow> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-                	StudentBean rowData = row.getItem();
+                	StudentShow rowData = row.getItem();
                 	Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)event.getSource()).getScene().getWindow();
                     // OR
                     // System.out.println(stageTheEventSourceNodeBelongs);
@@ -146,7 +139,8 @@ public class StudentsController extends BorderPane implements Initializable{
 					try {
 			            page = (AnchorPane) loader.load();
 			            studentProfileCtrl = (StudentProfileController) loader.getController();
-			            studentProfileCtrl.setStudent(rowData);
+			            StudentBean student = StudentOpr.getStudentByID(rowData.getStudentID());
+			            studentProfileCtrl.setStudent(student);
 			            studentProfileCtrl.setStudentController(this);
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
@@ -163,7 +157,11 @@ public class StudentsController extends BorderPane implements Initializable{
             return row ;
         });
         
-        data.addAll(StudentOpr.getAllStudents(2));
+        data.addAll();
+        
+        for (StudentBean student : StudentOpr.getAllStudents(2)) {
+        	data.add(StudentShow.StudentBeanToShow(student));
+        }
         
         tableView.setItems(data);
 	}
@@ -179,7 +177,7 @@ public class StudentsController extends BorderPane implements Initializable{
 			data.add(StudentOpr.getStudentByID(id));
 		}
 		*/
-		for (TableColumn<StudentBean,?> item : tableView.getColumns()) {
+		for (TableColumn<StudentShow,?> item : tableView.getColumns()) {
 			item.setVisible(false);
 			item.setVisible(true);
 		}

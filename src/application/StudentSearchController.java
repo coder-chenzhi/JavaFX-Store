@@ -3,9 +3,9 @@ package application;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import bean.teach.StudentBean;
+import bean.teach.StudentOpr;
 import util.Time;
-import bean.StudentBean;
-import bean.StudentOpr;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -172,7 +172,10 @@ public class StudentSearchController extends AnchorPane implements
 			tmp = FXCollections.observableArrayList();
 			System.out.println(candidate.size());
 			
-			this.studentController.data.addAll(candidate);
+			for (StudentBean student : candidate) {
+				this.studentController.data.add(StudentShow.StudentBeanToShow(student));
+			}
+			
 			this.studentController.refresh();
 			((Node) event.getSource()).getScene().getWindow().hide();
 		});

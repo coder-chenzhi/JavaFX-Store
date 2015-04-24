@@ -15,6 +15,13 @@
               <MenuItem fx:id="quit" mnemonicParsing="false" onAction="#processMenuClick" text="退出" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="销售系统">
+              <items>
+                <MenuItem mnemonicParsing="false" text="库存" />
+                  <MenuItem mnemonicParsing="false" text="进货" />
+                  <MenuItem mnemonicParsing="false" text="销售" />
+              </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="档案管理">
             <items>
               <MenuItem fx:id="students" mnemonicParsing="false" onAction="#processMenuClick" text="学生档案" />

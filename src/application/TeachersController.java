@@ -4,8 +4,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import bean.TeacherBean;
-import bean.TeacherOpr;
+import bean.teach.TeacherBean;
+import bean.teach.TeacherOpr;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -27,7 +27,7 @@ import javafx.stage.Stage;
 public class TeachersController extends BorderPane implements Initializable{
 
 	@FXML
-	private TableView<TeacherBean> tableView = new TableView<TeacherBean>();
+	private TableView<TeacherShow> tableView = new TableView<TeacherShow>();
 	
 	@FXML
 	private Button add;
@@ -35,7 +35,7 @@ public class TeachersController extends BorderPane implements Initializable{
 	@FXML
 	private Button search;
 	
-	ObservableList<TeacherBean> data = FXCollections.observableArrayList();
+	ObservableList<TeacherShow> data = FXCollections.observableArrayList();
 	
 	static final String properties[] = {
 		"teacherID",
@@ -43,12 +43,7 @@ public class TeachersController extends BorderPane implements Initializable{
 		"sex",
 		"birthday",
 		"major",
-		"level",
-		"education",
-		"school",
-		"identifyCard",
 		"phone",
-		"address",
 		"enrollDay",
 		"status",
 		"other"};
@@ -60,7 +55,7 @@ public class TeachersController extends BorderPane implements Initializable{
 		for(int i=0; i<properties.length; i++){
             TableColumn col = new TableColumn(properties[i]);
             col.setCellValueFactory(
-                    new PropertyValueFactory<TeacherBean, String>(
+                    new PropertyValueFactory<TeacherShow, String>(
                     		properties[i]));
             tableView.getColumns().add(col);
         }
@@ -123,10 +118,10 @@ public class TeachersController extends BorderPane implements Initializable{
 		
 		
         tableView.setRowFactory( tv -> {
-            TableRow<TeacherBean> row = new TableRow<>();
+            TableRow<TeacherShow> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-                	TeacherBean rowData = row.getItem();
+                	TeacherShow rowData = row.getItem();
                 	Stage stageTheEventSourceNodeBelongs = (Stage) ((Node)event.getSource()).getScene().getWindow();
                     // OR
                     // System.out.println(stageTheEventSourceNodeBelongs);
@@ -142,7 +137,8 @@ public class TeachersController extends BorderPane implements Initializable{
 					try {
 			            page = (AnchorPane) loader.load();
 			            teacherProfileCtrl = (TeacherProfileController) loader.getController();
-			            teacherProfileCtrl.setTeacher(rowData);
+			            TeacherBean teacher = TeacherOpr.getTeacherByID(rowData.getTeacherID());
+			            teacherProfileCtrl.setTeacher(teacher);
 			            teacherProfileCtrl.setTeacherController(this);
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
@@ -158,8 +154,10 @@ public class TeachersController extends BorderPane implements Initializable{
             });
             return row ;
         });
-        
-        data.addAll(TeacherOpr.getAllTeachers(2));
+                
+        for (TeacherBean teacher : TeacherOpr.getAllTeachers(2)) {
+        	data.add(TeacherShow.TeacherBeanToShow(teacher));
+        }
         
         tableView.setItems(data);
 	}
@@ -175,7 +173,7 @@ public class TeachersController extends BorderPane implements Initializable{
 			data.add(teacherOpr.getteacherByID(id));
 		}
 		*/
-		for (TableColumn<TeacherBean,?> item : tableView.getColumns()) {
+		for (TableColumn<TeacherShow,?> item : tableView.getColumns()) {
 			item.setVisible(false);
 			item.setVisible(true);
 		}

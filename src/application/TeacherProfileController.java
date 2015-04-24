@@ -5,9 +5,9 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ResourceBundle;
 
+import bean.teach.TeacherBean;
+import bean.teach.TeacherOpr;
 import util.Time;
-import bean.TeacherBean;
-import bean.TeacherOpr;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

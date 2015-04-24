@@ -4,8 +4,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import bean.CourseBean;
-import bean.CourseOpr;
+import bean.teach.CourseBean;
+import bean.teach.CourseOpr;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

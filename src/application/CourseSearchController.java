@@ -4,11 +4,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import bean.teach.CourseBean;
+import bean.teach.CourseOpr;
+import bean.teach.TeacherBean;
+import bean.teach.TeacherOpr;
 import util.Time;
-import bean.CourseBean;
-import bean.CourseOpr;
-import bean.TeacherBean;
-import bean.TeacherOpr;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

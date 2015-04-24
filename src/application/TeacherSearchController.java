@@ -3,9 +3,9 @@ package application;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import bean.teach.TeacherBean;
+import bean.teach.TeacherOpr;
 import util.Time;
-import bean.TeacherBean;
-import bean.TeacherOpr;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -166,7 +166,10 @@ public class TeacherSearchController extends AnchorPane implements
 			candidate = tmp;
 			tmp = FXCollections.observableArrayList();
 			
-			this.teacherController.data.addAll(candidate);
+			for (TeacherBean teacher : candidate) {
+				this.teacherController.data.add(TeacherShow.TeacherBeanToShow(teacher));
+			}
+			
 			this.teacherController.refresh();
 			((Node) event.getSource()).getScene().getWindow().hide();
 		});

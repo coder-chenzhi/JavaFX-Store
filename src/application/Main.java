@@ -5,8 +5,8 @@ import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import bean.PasswordBean;
-import bean.PasswordOpr;
+import bean.teach.PasswordBean;
+import bean.teach.PasswordOpr;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,9 +20,25 @@ import javafx.scene.layout.BorderPane;
 public class Main extends Application {
 	
 	private Stage primaryStage;
-    private BorderPane rootLayout;
+    public Stage getPrimaryStage() {
+		return primaryStage;
+	}
+
+	public void setPrimaryStage(Stage primaryStage) {
+		this.primaryStage = primaryStage;
+	}
+
+	private BorderPane rootLayout;
     private PasswordBean loggedUser;
-    private final double MINIMUM_WINDOW_WIDTH = 1280.0;
+    public PasswordBean getLoggedUser() {
+		return loggedUser;
+	}
+
+	public void setLoggedUser(PasswordBean loggedUser) {
+		this.loggedUser = loggedUser;
+	}
+
+	private final double MINIMUM_WINDOW_WIDTH = 1280.0;
     private final double MINIMUM_WINDOW_HEIGHT = 720.0;
     
 	@Override

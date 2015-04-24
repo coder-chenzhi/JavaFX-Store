@@ -152,3 +152,63 @@ CREATE TABLE Pass (
 	password TEXT,
 	PRIMARY KEY(id, type) 
 );
+
+CREATE TABLE Customers (
+	customerID INT,
+	customerName VARCHAR(255) UNIQUE,
+	contactName Text,
+	contactAdress Text,
+	contactPhone Text,
+	other Text,
+	PRIMARY KEY (customerID)
+);
+
+CREATE TABLE Suppliers (
+	supplierID INT,
+	supplierName VARCHAR(255) UNIQUE,
+	contactName Text,
+	contactAdress Text,
+	contactPhone Text,
+	other Text,
+	PRIMARY KEY (supplierID)
+);
+
+CREATE TABLE PurchaseOrders (
+	orderID INT,
+	goodID INT,
+	supplierID INT,
+	amount INT,
+	price INT,
+	commitDate VARCHAR(8),
+	status Text,
+	PRIMARY KEY (orderID, goodID, supplierID)
+);
+
+CREATE TABLE SellOrders (
+	orderID INT,
+	goodID INT,
+	customerID INT,
+	amount INT,
+	price INT,
+	commitDate VARCHAR(8),
+	status Text,
+	PRIMARY KEY (orderID, goodID, customerID)
+);
+
+
+CREATE TABLE Goods (
+	goodID INT,
+	goodName VARCHAR(255) UNIQUE, /* 商品名称 */
+	goodType Text, /* 乐器类型 */
+	manufact Text, /* 生产厂商*/
+	defalutPurchasePrice INT, /* 默认进价 */
+	defalutSellPrice INT, /* 默认售价 */
+	other Text,
+	PRIMARY KEY (goodID)
+);
+
+CREATE TABLE Stocks (
+	goodID INT,
+	amount INT,
+	PRIMARY KEY (goodID)
+);
