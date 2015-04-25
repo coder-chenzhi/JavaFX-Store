@@ -9,7 +9,7 @@ public class StocksOprTest {
 	}
 	
 	public static void testGetAll() {
-		System.out.println(StocksOpr.getAllStcoks());
+		System.out.println(StocksOpr.getAllStocks());
 	}
 	
 	public static void testAdd() {

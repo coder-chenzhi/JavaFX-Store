@@ -69,7 +69,7 @@ public class StocksOpr {
 		return amount;
 	}
 	
-	public static ArrayList<StockBean> getAllStcoks() {
+	public static ArrayList<StockBean> getAllStocks() {
 		ArrayList<StockBean> stocks = new ArrayList<>();
 		Object[] params = {};
 		String sql = "select * from stocks";

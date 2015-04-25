@@ -75,6 +75,22 @@ public class MenuController extends BorderPane implements Initializable {
 	@FXML
 	private MenuItem tableStudentTakeCourse;
 	
+	/* 库存 */
+	@FXML
+	private MenuItem stocks;
+	
+	/* 商品 */
+	@FXML
+	private MenuItem goods;
+	
+	/* 学生上课记录 */
+	@FXML
+	private MenuItem purchase;
+	
+	/* 学生上课记录 */
+	@FXML
+	private MenuItem sell;
+	
 	@FXML
 	private MenuItem calculator;
 
@@ -158,6 +174,38 @@ public class MenuController extends BorderPane implements Initializable {
 			}
 			Tab tab1 = new Tab();
 			tab1.setText("供货商管理");
+			tab1.setContent(page);
+			tabs.getTabs().add(tab1);
+		} else if (text.equals("库存")) {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("StocksMain.fxml"));
+			StocksController menu = null;
+			AnchorPane page = null;
+			try {
+				page = (AnchorPane) loader.load();
+				menu = (StocksController) loader.getController();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Tab tab1 = new Tab();
+			tab1.setText("库存");
+			tab1.setContent(page);
+			tabs.getTabs().add(tab1);
+		} else if (text.equals("商品")) {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("GoodsMain.fxml"));
+			StocksController menu = null;
+			AnchorPane page = null;
+			try {
+				page = (AnchorPane) loader.load();
+				menu = (StocksController) loader.getController();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Tab tab1 = new Tab();
+			tab1.setText("商品管理");
 			tab1.setContent(page);
 			tabs.getTabs().add(tab1);
 		} else if (text.equals("教室管理")) {

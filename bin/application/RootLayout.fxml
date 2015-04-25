@@ -17,9 +17,10 @@
           </Menu>
             <Menu mnemonicParsing="false" text="销售系统">
               <items>
-                <MenuItem mnemonicParsing="false" text="库存" />
-                  <MenuItem mnemonicParsing="false" text="进货" />
-                  <MenuItem mnemonicParsing="false" text="销售" />
+                <MenuItem fx:id="stocks" mnemonicParsing="false" onAction="#processMenuClick" text="库存" />
+                  <MenuItem fx:id="purchase" mnemonicParsing="false" onAction="#processMenuClick" text="进货" />
+                  <MenuItem fx:id="sell" mnemonicParsing="false" onAction="#processMenuClick" text="销售" />
+                  <MenuItem mnemonicParsing="false" text="商品" />
               </items>
             </Menu>
           <Menu mnemonicParsing="false" text="档案管理">
