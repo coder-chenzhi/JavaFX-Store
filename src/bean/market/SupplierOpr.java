@@ -38,18 +38,18 @@ public class SupplierOpr {
 	public static void insertSupplier(SupplierBean newSupplier) {
 		Object params[] = { SupplierOpr.getNextSupplierID(),
 				newSupplier.getSupplierName(), newSupplier.getContactName(),
-				newSupplier.getContactPhone(), newSupplier.getContactAdress(),
+				newSupplier.getContactAddress(), newSupplier.getContactPhone(),
 				newSupplier.getOther() };
-		String sql = "insert into suppliers (supplierID, supplierName, contactName, contactAdress, contactPhone, other) values (?,?,?,?,?,?)";
+		String sql = "insert into suppliers (supplierID, supplierName, contactName, contactAddress, contactPhone, other) values (?,?,?,?,?,?)";
 		db.executeSqlWithoutResult(sql, params);
 	}
 
 	public static void updateSupplier(SupplierBean newSupplier) {
 		Object params[] = { newSupplier.getSupplierName(),
-				newSupplier.getContactName(),
-				newSupplier.getContactAdress(), newSupplier.getContactPhone(),
-				newSupplier.getOther(), newSupplier.getSupplierID() };
-		String sql = "update suppliers set supplierName = ?, contactName = ?, contactAdress = ?, contactPhone = ?, other = ? where supplierID = ?";
+				newSupplier.getContactName(), newSupplier.getContactAddress(),
+				newSupplier.getContactPhone(), newSupplier.getOther(),
+				newSupplier.getSupplierID() };
+		String sql = "update suppliers set supplierName = ?, contactName = ?, contactAddress = ?, contactPhone = ?, other = ? where supplierID = ?";
 		db.executeSqlWithoutResult(sql, params);
 	}
 
@@ -66,7 +66,7 @@ public class SupplierOpr {
 				supplier.setSupplierID(rs.getInt("supplierID"));
 				supplier.setSupplierName(rs.getString("supplierName"));
 				supplier.setContactName(rs.getString("contactName"));
-				supplier.setContactAdress(rs.getString("contactAdress"));
+				supplier.setContactAddress(rs.getString("contactAddress"));
 				supplier.setContactPhone(rs.getString("contactPhone"));
 				supplier.setOther(rs.getString("other"));
 			}
@@ -84,8 +84,8 @@ public class SupplierOpr {
 
 	public static ArrayList<SupplierBean> getSupplierByName(String supplierName) {
 		ArrayList<SupplierBean> suppliers = new ArrayList<>();
-		
-		Object params[] = { "%" + supplierName + "%"};
+
+		Object params[] = { "%" + supplierName + "%" };
 		String sql = "select * from suppliers where supplierName like ?";
 
 		ResultSet rs = db.executeSqlWithResult(sql, params);
@@ -96,7 +96,7 @@ public class SupplierOpr {
 				supplier.setSupplierID(rs.getInt("supplierID"));
 				supplier.setSupplierName(rs.getString("supplierName"));
 				supplier.setContactName(rs.getString("contactName"));
-				supplier.setContactAdress(rs.getString("contactAdress"));
+				supplier.setContactAddress(rs.getString("contactAddress"));
 				supplier.setContactPhone(rs.getString("contactPhone"));
 				supplier.setOther(rs.getString("other"));
 				suppliers.add(supplier);
@@ -126,7 +126,7 @@ public class SupplierOpr {
 				supplier.setSupplierID(rs.getInt("supplierID"));
 				supplier.setSupplierName(rs.getString("supplierName"));
 				supplier.setContactName(rs.getString("contactName"));
-				supplier.setContactAdress(rs.getString("contactAdress"));
+				supplier.setContactAddress(rs.getString("contactAddress"));
 				supplier.setContactPhone(rs.getString("contactPhone"));
 				supplier.setOther(rs.getString("other"));
 				suppliers.add(supplier);

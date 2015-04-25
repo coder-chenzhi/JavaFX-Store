@@ -38,18 +38,18 @@ public class CustomerOpr {
 	public static void insertCustomer(CustomerBean newCustomer) {
 		Object params[] = { CustomerOpr.getNextCustomerID(),
 				newCustomer.getCustomerName(), newCustomer.getContactName(),
-				newCustomer.getContactPhone(), newCustomer.getContactAdress(),
+				newCustomer.getContactAddress(), newCustomer.getContactPhone(), 
 				newCustomer.getOther() };
-		String sql = "insert into customers (customerID, customerName, contactName, contactAdress, contactPhone, other) values (?,?,?,?,?,?)";
+		String sql = "insert into customers (customerID, customerName, contactName, contactAddress, contactPhone, other) values (?,?,?,?,?,?)";
 		db.executeSqlWithoutResult(sql, params);
 	}
 
 	public static void updateCustomer(CustomerBean newCustomer) {
 		Object params[] = { newCustomer.getCustomerName(),
 				newCustomer.getContactName(),
-				newCustomer.getContactAdress(), newCustomer.getContactPhone(),
+				newCustomer.getContactAddress(), newCustomer.getContactPhone(),
 				newCustomer.getOther(), newCustomer.getCustomerID() };
-		String sql = "update customers set customerName = ?, contactName = ?, contactAdress = ?, contactPhone = ?, other = ? where customerID = ?";
+		String sql = "update customers set customerName = ?, contactName = ?, contactAddress = ?, contactPhone = ?, other = ? where customerID = ?";
 		db.executeSqlWithoutResult(sql, params);
 	}
 
@@ -66,7 +66,7 @@ public class CustomerOpr {
 				customer.setCustomerID(rs.getInt("customerID"));
 				customer.setCustomerName(rs.getString("customerName"));
 				customer.setContactName(rs.getString("contactName"));
-				customer.setContactAdress(rs.getString("contactAdress"));
+				customer.setContactAddress(rs.getString("contactAddress"));
 				customer.setContactPhone(rs.getString("contactPhone"));
 				customer.setOther(rs.getString("other"));
 			}
@@ -96,7 +96,7 @@ public class CustomerOpr {
 				customer.setCustomerID(rs.getInt("customerID"));
 				customer.setCustomerName(rs.getString("customerName"));
 				customer.setContactName(rs.getString("contactName"));
-				customer.setContactAdress(rs.getString("contactAdress"));
+				customer.setContactAddress(rs.getString("contactAddress"));
 				customer.setContactPhone(rs.getString("contactPhone"));
 				customer.setOther(rs.getString("other"));
 				customers.add(customer);
@@ -126,7 +126,7 @@ public class CustomerOpr {
 				customer.setCustomerID(rs.getInt("customerID"));
 				customer.setCustomerName(rs.getString("customerName"));
 				customer.setContactName(rs.getString("contactName"));
-				customer.setContactAdress(rs.getString("contactAdress"));
+				customer.setContactAddress(rs.getString("contactAddress"));
 				customer.setContactPhone(rs.getString("contactPhone"));
 				customer.setOther(rs.getString("other"));
 				customers.add(customer);

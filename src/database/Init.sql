@@ -157,7 +157,7 @@ CREATE TABLE Customers (
 	customerID INT,
 	customerName VARCHAR(255) UNIQUE,
 	contactName Text,
-	contactAdress Text,
+	contactAddress Text,
 	contactPhone Text,
 	other Text,
 	PRIMARY KEY (customerID)
@@ -167,7 +167,7 @@ CREATE TABLE Suppliers (
 	supplierID INT,
 	supplierName VARCHAR(255) UNIQUE,
 	contactName Text,
-	contactAdress Text,
+	contactAddress Text,
 	contactPhone Text,
 	other Text,
 	PRIMARY KEY (supplierID)

@@ -26,13 +26,15 @@
             <items>
               <MenuItem fx:id="students" mnemonicParsing="false" onAction="#processMenuClick" text="学生档案" />
                   <MenuItem fx:id="teachers" mnemonicParsing="false" onAction="#processMenuClick" text="教师档案" />
+                  <MenuItem fx:id="customers" mnemonicParsing="false" onAction="#processMenuClick" text="顾客档案" />
+                  <MenuItem fx:id="suppliers" mnemonicParsing="false" onAction="#processMenuClick" text="供货商档案" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="教学管理">
             <items>
-              <MenuItem fx:id="searchCourses" mnemonicParsing="false" onAction="#processMenuClick" text="课程管理" />
+              <MenuItem fx:id="manageCourses" mnemonicParsing="false" onAction="#processMenuClick" text="课程管理" />
                   <MenuItem fx:id="manageRooms" mnemonicParsing="false" onAction="#processMenuClick" text="教室管理" />
-                  <MenuItem mnemonicParsing="false" onAction="#processMenuClick" text="时段管理" />
+                  <MenuItem fx:id="managePeriods" mnemonicParsing="false" onAction="#processMenuClick" text="时段管理" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="考勤">

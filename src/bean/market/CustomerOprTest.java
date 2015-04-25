@@ -25,7 +25,7 @@ public class CustomerOprTest {
 		CustomerBean customer = CustomerOpr.getCustomerByID(20150003);
 		customer.setContactName("呵呵");
 		customer.setContactPhone("");
-		customer.setContactAdress("青岛市");
+		customer.setContactAddress("青岛市");
 		CustomerOpr.updateCustomer(customer);
 	}
 	

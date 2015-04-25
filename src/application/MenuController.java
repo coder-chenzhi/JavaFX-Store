@@ -27,13 +27,23 @@ public class MenuController extends BorderPane implements Initializable {
 
 	@FXML
 	private MenuItem quit;
-
+	
+	/* 学生档案 */
 	@FXML
 	private MenuItem students;
-
+	
+	/* 教师档案 */
 	@FXML
 	private MenuItem teachers;
-
+	
+	/* 顾客档案 */
+	@FXML
+	private MenuItem customers;
+	
+	/* 供货商档案 */
+	@FXML
+	private MenuItem suppliers;
+	
 	@FXML
 	private MenuItem manageCourses;
 
@@ -64,7 +74,7 @@ public class MenuController extends BorderPane implements Initializable {
 	/* 学生上课记录 */
 	@FXML
 	private MenuItem tableStudentTakeCourse;
-
+	
 	@FXML
 	private MenuItem calculator;
 
@@ -99,7 +109,7 @@ public class MenuController extends BorderPane implements Initializable {
 				e.printStackTrace();
 			}
 			Tab tab1 = new Tab();
-			tab1.setText("SearchStudents");
+			tab1.setText("学生档案");
 			tab1.setContent(page);
 			tabs.getTabs().add(tab1);
 		} else if (text.equals("教师档案")) {
@@ -115,7 +125,39 @@ public class MenuController extends BorderPane implements Initializable {
 				e.printStackTrace();
 			}
 			Tab tab1 = new Tab();
-			tab1.setText("SearchTeachers");
+			tab1.setText("教师档案");
+			tab1.setContent(page);
+			tabs.getTabs().add(tab1);
+		} else if (text.equals("顾客档案")) {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("CustomersMain.fxml"));
+			CustomersController menu = null;
+			AnchorPane page = null;
+			try {
+				page = (AnchorPane) loader.load();
+				menu = (CustomersController) loader.getController();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Tab tab1 = new Tab();
+			tab1.setText("顾客档案");
+			tab1.setContent(page);
+			tabs.getTabs().add(tab1);
+		} else if (text.equals("供货商档案")) {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("SuppliersMain.fxml"));
+			SuppliersController menu = null;
+			AnchorPane page = null;
+			try {
+				page = (AnchorPane) loader.load();
+				menu = (SuppliersController) loader.getController();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Tab tab1 = new Tab();
+			tab1.setText("供货商管理");
 			tab1.setContent(page);
 			tabs.getTabs().add(tab1);
 		} else if (text.equals("教室管理")) {
@@ -132,7 +174,7 @@ public class MenuController extends BorderPane implements Initializable {
 					e.printStackTrace();
 				}
 				Tab tab1 = new Tab();
-				tab1.setText("ShowRooms");
+				tab1.setText("教室管理");
 				tab1.setContent(page);
 				tabs.getTabs().add(tab1);
 			} else {
@@ -159,7 +201,7 @@ public class MenuController extends BorderPane implements Initializable {
 				e.printStackTrace();
 			}
 			Tab tab1 = new Tab();
-			tab1.setText("ShowPeriods");
+			tab1.setText("时段管理");
 			tab1.setContent(page);
 			tabs.getTabs().add(tab1);
 		} else if (text.equals("课程管理")) {
@@ -175,10 +217,10 @@ public class MenuController extends BorderPane implements Initializable {
 				e.printStackTrace();
 			}
 			Tab tab1 = new Tab();
-			tab1.setText("ShowPeriods");
+			tab1.setText("课程管理");
 			tab1.setContent(page);
 			tabs.getTabs().add(tab1);
-		}
+		} 
 
 	}
 

@@ -4,7 +4,7 @@ package bean.market;
 	customerID INT,
 	customerName VARCHAR(255) UNIQUE,
 	contactName Text,
-	contactAdress Text,
+	contactAddress Text,
 	contactPhone Text,
 	other Text,
 	PRIMARY KEY (customerID)
@@ -16,7 +16,7 @@ public class CustomerBean {
 	private int customerID;
 	private String customerName;
 	private String contactName;
-	private String contactAdress;
+	private String contactAddress;
 	private String contactPhone;
 	private String other;
 	public int getCustomerID() {
@@ -37,11 +37,11 @@ public class CustomerBean {
 	public void setContactName(String contactName) {
 		this.contactName = contactName;
 	}
-	public String getContactAdress() {
-		return contactAdress;
+	public String getContactAddress() {
+		return contactAddress;
 	}
-	public void setContactAdress(String contactAdress) {
-		this.contactAdress = contactAdress;
+	public void setContactAddress(String contactAddress) {
+		this.contactAddress = contactAddress;
 	}
 	public String getContactPhone() {
 		return contactPhone;
@@ -59,7 +59,7 @@ public class CustomerBean {
 	public String toString() {
 		return "CustomerBean [customerID=" + customerID + ", customerName="
 				+ customerName + ", contactName=" + contactName
-				+ ", contactAdress=" + contactAdress + ", contactPhone="
+				+ ", contactAddress=" + contactAddress + ", contactPhone="
 				+ contactPhone + ", other=" + other + "]\n";
 	}
 	
