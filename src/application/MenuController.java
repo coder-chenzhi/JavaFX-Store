@@ -195,11 +195,11 @@ public class MenuController extends BorderPane implements Initializable {
 		} else if (text.equals("…Ã∆∑")) {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("GoodsMain.fxml"));
-			StocksController menu = null;
+			GoodsController menu = null;
 			AnchorPane page = null;
 			try {
 				page = (AnchorPane) loader.load();
-				menu = (StocksController) loader.getController();
+				menu = (GoodsController) loader.getController();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
