@@ -75,14 +75,15 @@ public class PurchaseOrderOpr {
 		return purchaseOrders;
 	}
 	
-	public static PurchaseOrderBean getbyID(int orderID) {
-		PurchaseOrderBean purchaseOrder = new PurchaseOrderBean();
-		Object[] params = {orderID};
+	public static ArrayList<PurchaseOrderBean> getByID(int orderID) {
+		ArrayList<PurchaseOrderBean> purchaseOrders = new ArrayList<>();
+		Object[] params = { orderID };
 		String sql = "select * from PurchaseOrders where orderID = ?";
 		ResultSet rs = db.executeSqlWithResult(sql, params);
 
 		try {
 			while (rs.next()) {
+				PurchaseOrderBean purchaseOrder = new PurchaseOrderBean();
 				purchaseOrder.setOrderID(rs.getInt("orderID"));
 				purchaseOrder.setGoodID(rs.getInt("goodID"));
 				purchaseOrder.setSupplierID(rs.getInt("supplierID"));
@@ -90,6 +91,7 @@ public class PurchaseOrderOpr {
 				purchaseOrder.setPrice(rs.getInt("price"));
 				purchaseOrder.setCommitDate(rs.getString("commitDate"));
 				purchaseOrder.setStatus(rs.getString("status"));
+				purchaseOrders.add(purchaseOrder);
 			}
 
 		} catch (SQLException e) {
@@ -100,7 +102,56 @@ public class PurchaseOrderOpr {
 			db.close();
 		}
 
-		return purchaseOrder;
+		return purchaseOrders;
+	}
+	
+	public static ArrayList<Integer> getUniqueID() {
+		ArrayList<Integer> uniqueIDs = new ArrayList<>();
+		Object[] params = {};
+		String sql = "select distinct orderID from PurchaseOrders";
+		ResultSet rs = db.executeSqlWithResult(sql, params);
+
+		try {
+			while (rs.next()) {
+				uniqueIDs.add(rs.getInt("orderID"));
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+
+			db.close();
+		}
+
+		return uniqueIDs;
+	}
+	
+	public static int getTotalCost(int orderID) {
+		int totalCost = 0;
+		Object[] params = {orderID};
+		String sql = "select amount, price from PurchaseOrders where orderID = ?";
+		ResultSet rs = db.executeSqlWithResult(sql, params);
+
+		try {
+			while (rs.next()) {
+				totalCost += rs.getInt("amount") * rs.getInt("price");
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+
+			db.close();
+		}
+
+		return totalCost;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(PurchaseOrderOpr.getTotalCost(20150001));
+		System.out.println(PurchaseOrderOpr.getUniqueID());
 	}
 	
 }

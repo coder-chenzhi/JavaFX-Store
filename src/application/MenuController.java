@@ -8,11 +8,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
@@ -266,6 +264,22 @@ public class MenuController extends BorderPane implements Initializable {
 			}
 			Tab tab1 = new Tab();
 			tab1.setText("课程管理");
+			tab1.setContent(page);
+			tabs.getTabs().add(tab1);
+		} else if (text.equals("进货")) {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("PurchaseOrdersMain.fxml"));
+			PurchaseOrdersController menu = null;
+			AnchorPane page = null;
+			try {
+				page = (AnchorPane) loader.load();
+				menu = (PurchaseOrdersController) loader.getController();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Tab tab1 = new Tab();
+			tab1.setText("进货");
 			tab1.setContent(page);
 			tabs.getTabs().add(tab1);
 		} 

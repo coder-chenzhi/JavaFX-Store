@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PurchaseOrderProfileController">
+   <children>
+      <Button fx:id="add" layoutX="20.0" layoutY="17.0" mnemonicParsing="false" text="新增" />
+      <TableView fx:id="tableView" layoutX="1.0" layoutY="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="50.0" />
+      <Button layoutX="140.0" layoutY="17.0" mnemonicParsing="false" onAction="#refresh" text="刷新" />
+      <Button layoutX="200.0" layoutY="17.0" mnemonicParsing="false" onAction="#clear" text="清空显示" />
+      <Button fx:id="save" layoutX="80.0" layoutY="17.0" mnemonicParsing="false" text="保存" />
+   </children>
+</AnchorPane>
