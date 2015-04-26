@@ -4,20 +4,20 @@ import bean.market.PurchaseOrderBean;
 import bean.market.PurchaseOrderOpr;
 
 public class PurchaseOrderShow {
-	private int orderID;
-	private int supplierID;
-	private int totalCost;
+	private String orderID;
+	private String supplierID;
+	private String totalCost;
 	private String commitDate;
 	private String other;
-	
+
 	public PurchaseOrderShow(PurchaseOrderBean order) {
 		this.setOrderID(order.getOrderID());
 		this.setSupplierID(order.getSupplierID());
 		this.setCommitDate(order.getCommitDate());
-		this.setTotalCost(PurchaseOrderOpr.getTotalCost(order.getOrderID()));
+		this.setTotalCost(String.valueOf(PurchaseOrderOpr.getTotalCost(Integer
+				.parseInt(order.getOrderID()))));
 	}
-	
-	
+
 	public String getOther() {
 		return other;
 	}
@@ -26,28 +26,27 @@ public class PurchaseOrderShow {
 		this.other = other;
 	}
 
-
-	public int getOrderID() {
+	public String getOrderID() {
 		return orderID;
 	}
 
-	public void setOrderID(int orderID) {
+	public void setOrderID(String orderID) {
 		this.orderID = orderID;
 	}
 
-	public int getSupplierID() {
+	public String getSupplierID() {
 		return supplierID;
 	}
 
-	public void setSupplierID(int supplierID) {
+	public void setSupplierID(String supplierID) {
 		this.supplierID = supplierID;
 	}
 
-	public int getTotalCost() {
+	public String getTotalCost() {
 		return totalCost;
 	}
 
-	public void setTotalCost(int totalCost) {
+	public void setTotalCost(String totalCost) {
 		this.totalCost = totalCost;
 	}
 
@@ -58,7 +57,6 @@ public class PurchaseOrderShow {
 	public void setCommitDate(String commitDate) {
 		this.commitDate = commitDate;
 	}
-
 
 	@Override
 	public String toString() {

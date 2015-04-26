@@ -41,7 +41,7 @@ public class PurchaseOrderProfileController extends AnchorPane implements
 
 	private boolean isShow;
 
-	private int purchaseID;
+	private String purchaseOrderID;
 
 	@FXML
 	private TableView<PurchaseOrderBean> tableView = new TableView<PurchaseOrderBean>();
@@ -64,6 +64,9 @@ public class PurchaseOrderProfileController extends AnchorPane implements
 		if (purchaseOrders != null) {
 			isShow = true;
 			this.data.addAll(purchaseOrders);
+			purchaseOrderID = purchaseOrders.get(0).getOrderID();
+		} else {
+			purchaseOrderID = String.valueOf(PurchaseOrderOpr.getNextPurchaseOrderID());
 		}
 
 	}
@@ -98,9 +101,10 @@ public class PurchaseOrderProfileController extends AnchorPane implements
 		tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		
 		TableColumn orderID = new TableColumn("orderID");
+		orderID.setPrefWidth(100);
 		tableView.getColumns().add(orderID);
 		orderID.setCellValueFactory(
-                    new PropertyValueFactory<PurchaseOrderBean, String>("id"));
+                    new PropertyValueFactory<PurchaseOrderBean, String>("orderID"));
 		
 		TableColumn goodID = new TableColumn("goodID");
         goodID.setMinWidth(100);
@@ -112,7 +116,7 @@ public class PurchaseOrderProfileController extends AnchorPane implements
                 public void handle(CellEditEvent<PurchaseOrderBean, String> t) {
                     ((PurchaseOrderBean) t.getTableView().getItems().get(
                         t.getTablePosition().getRow())
-                        ).setGoodID(Integer.parseInt(t.getNewValue()));
+                        ).setGoodID(t.getNewValue());
                 }
              }
         );
@@ -129,7 +133,7 @@ public class PurchaseOrderProfileController extends AnchorPane implements
                 public void handle(CellEditEvent<PurchaseOrderBean, String> t) {
                     ((PurchaseOrderBean) t.getTableView().getItems().get(
                         t.getTablePosition().getRow())
-                        ).setSupplierID(Integer.parseInt(t.getNewValue()));
+                        ).setSupplierID(t.getNewValue());
                 }
              }
         );
@@ -147,7 +151,7 @@ public class PurchaseOrderProfileController extends AnchorPane implements
                 public void handle(CellEditEvent<PurchaseOrderBean, String> t) {
                     ((PurchaseOrderBean) t.getTableView().getItems().get(
                         t.getTablePosition().getRow())
-                        ).setAmount(Integer.parseInt(t.getNewValue()));
+                        ).setAmount(t.getNewValue());
                 }
              }
         );
@@ -164,7 +168,7 @@ public class PurchaseOrderProfileController extends AnchorPane implements
                 public void handle(CellEditEvent<PurchaseOrderBean, String> t) {
                     ((PurchaseOrderBean) t.getTableView().getItems().get(
                         t.getTablePosition().getRow())
-                        ).setPrice(Integer.parseInt(t.getNewValue()));
+                        ).setPrice(t.getNewValue());
                 }
              }
         );
@@ -206,7 +210,7 @@ public class PurchaseOrderProfileController extends AnchorPane implements
         
 		add.setOnAction(event -> {
 			PurchaseOrderBean order = new PurchaseOrderBean();
-			order.setOrderID(purchaseID);
+			order.setOrderID(purchaseOrderID);
 			order.setCommitDate(Time.getDate());
 			data.add(order);
 		});
@@ -216,24 +220,20 @@ public class PurchaseOrderProfileController extends AnchorPane implements
 				Stage popup = new Stage();
 				BorderPane page = new BorderPane();
 				page.setPrefSize(200,100);
-				Label label = new Label("权限不足！！！");
+				Label label = new Label("已下单商品不能新增和修改！！！");
 				page.setCenter(label);
 				popup.initModality(Modality.WINDOW_MODAL);
 	            popup.setScene(new Scene(page));
 	            popup.show();
 			} else {
-				PurchaseOrderBean order = new PurchaseOrderBean();
-				order.setOrderID(purchaseID);
-				
-				data.add(order);
+				PurchaseOrderOpr.deletePurchaseOrder(Integer.parseInt(purchaseOrderID));
+				for (PurchaseOrderBean order : data) {
+					PurchaseOrderOpr.insertPurchaseOrder(order);
+				}
 			}
 		});
 		
 		data.addAll();
-
-		for (PurchaseOrderBean purchaseOrder : PurchaseOrderOpr.getAll()) {
-			data.add(purchaseOrder);
-		}
 
 		tableView.setItems(data);
 	}

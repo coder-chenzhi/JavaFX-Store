@@ -111,7 +111,8 @@ public class PurchaseOrdersController extends BorderPane implements
 								purchaseOrderProfileCtrl = (PurchaseOrderProfileController) loader
 										.getController();
 								ArrayList<PurchaseOrderBean> purchaseOrders = PurchaseOrderOpr
-										.getByID(rowData.getOrderID());
+										.getByID(Integer.parseInt(rowData.getOrderID()));
+								System.out.println("PurchaseOrders" + purchaseOrders);
 								purchaseOrderProfileCtrl
 										.setPurchaseOrders(purchaseOrders);
 								purchaseOrderProfileCtrl

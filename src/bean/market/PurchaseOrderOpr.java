@@ -3,6 +3,7 @@ package bean.market;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 import util.Time;
 import database.DataBaseIO;
@@ -17,7 +18,7 @@ public class PurchaseOrderOpr {
 		ResultSet rs = db.executeSqlWithResult(sql, params);
 		try {
 			while (rs.next()) {
-				id = rs.getInt("orderID");
+				id = rs.getInt("maxID");
 			}
 
 		} catch (SQLException e) {
@@ -36,12 +37,18 @@ public class PurchaseOrderOpr {
 	}
 
 	public static void insertPurchaseOrder(PurchaseOrderBean purchaseOrder) {
-		Object params[] = { getNextPurchaseOrderID(),
+		Object params[] = { purchaseOrder.getOrderID(),
 				purchaseOrder.getGoodID(), purchaseOrder.getSupplierID(),
 				purchaseOrder.getAmount(), purchaseOrder.getPrice(),
 				purchaseOrder.getCommitDate(), purchaseOrder.getStatus(),
 				purchaseOrder.getOther() };
 		String sql = "insert into PurchaseOrders values(?,?,?,?,?,?,?,?)";
+		db.executeSqlWithoutResult(sql, params);
+	}
+	
+	public static void deletePurchaseOrder(int orderID) {
+		Object params[] = { orderID };
+		String sql = "delete from PurchaseOrders where orderID = ?";
 		db.executeSqlWithoutResult(sql, params);
 	}
 	
@@ -54,11 +61,11 @@ public class PurchaseOrderOpr {
 		try {
 			while (rs.next()) {
 				PurchaseOrderBean purchaseOrder = new PurchaseOrderBean();
-				purchaseOrder.setOrderID(rs.getInt("orderID"));
-				purchaseOrder.setGoodID(rs.getInt("goodID"));
-				purchaseOrder.setSupplierID(rs.getInt("supplierID"));
-				purchaseOrder.setAmount(rs.getInt("amount"));
-				purchaseOrder.setPrice(rs.getInt("price"));
+				purchaseOrder.setOrderID(String.valueOf(rs.getInt("orderID")));
+				purchaseOrder.setGoodID(String.valueOf(rs.getInt("goodID")));
+				purchaseOrder.setSupplierID(String.valueOf(rs.getInt("supplierID")));
+				purchaseOrder.setAmount(String.valueOf(rs.getInt("amount")));
+				purchaseOrder.setPrice(String.valueOf(rs.getInt("price")));
 				purchaseOrder.setCommitDate(rs.getString("commitDate"));
 				purchaseOrder.setStatus(rs.getString("status"));
 				purchaseOrders.add(purchaseOrder);
@@ -84,11 +91,11 @@ public class PurchaseOrderOpr {
 		try {
 			while (rs.next()) {
 				PurchaseOrderBean purchaseOrder = new PurchaseOrderBean();
-				purchaseOrder.setOrderID(rs.getInt("orderID"));
-				purchaseOrder.setGoodID(rs.getInt("goodID"));
-				purchaseOrder.setSupplierID(rs.getInt("supplierID"));
-				purchaseOrder.setAmount(rs.getInt("amount"));
-				purchaseOrder.setPrice(rs.getInt("price"));
+				purchaseOrder.setOrderID(String.valueOf(rs.getInt("orderID")));
+				purchaseOrder.setGoodID(String.valueOf(rs.getInt("goodID")));
+				purchaseOrder.setSupplierID(String.valueOf(rs.getInt("supplierID")));
+				purchaseOrder.setAmount(String.valueOf(rs.getInt("amount")));
+				purchaseOrder.setPrice(String.valueOf(rs.getInt("price")));
 				purchaseOrder.setCommitDate(rs.getString("commitDate"));
 				purchaseOrder.setStatus(rs.getString("status"));
 				purchaseOrders.add(purchaseOrder);
@@ -105,8 +112,8 @@ public class PurchaseOrderOpr {
 		return purchaseOrders;
 	}
 	
-	public static ArrayList<Integer> getUniqueID() {
-		ArrayList<Integer> uniqueIDs = new ArrayList<>();
+	public static TreeSet<Integer> getUniqueID() {
+		TreeSet<Integer> uniqueIDs = new TreeSet<>();
 		Object[] params = {};
 		String sql = "select distinct orderID from PurchaseOrders";
 		ResultSet rs = db.executeSqlWithResult(sql, params);

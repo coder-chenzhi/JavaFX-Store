@@ -8,11 +8,11 @@ package bean.market;
  */
 
 public class PurchaseOrderBean {
-	private int orderID;
-	private int goodID;
-	private int supplierID;
-	private int amount;
-	private int price;
+	private String orderID;
+	private String goodID;
+	private String supplierID;
+	private String amount;
+	private String price;
 	private String commitDate;
 	private String status;
 	private String other;
@@ -25,43 +25,43 @@ public class PurchaseOrderBean {
 		this.other = other;
 	}
 
-	public int getOrderID() {
+	public String getOrderID() {
 		return orderID;
 	}
 
-	public void setOrderID(int orderID) {
+	public void setOrderID(String orderID) {
 		this.orderID = orderID;
 	}
 
-	public int getGoodID() {
+	public String getGoodID() {
 		return goodID;
 	}
 
-	public void setGoodID(int goodID) {
+	public void setGoodID(String goodID) {
 		this.goodID = goodID;
 	}
 
-	public int getSupplierID() {
+	public String getSupplierID() {
 		return supplierID;
 	}
 
-	public void setSupplierID(int supplierID) {
+	public void setSupplierID(String supplierID) {
 		this.supplierID = supplierID;
 	}
 
-	public int getAmount() {
+	public String getAmount() {
 		return amount;
 	}
 
-	public void setAmount(int amount) {
+	public void setAmount(String amount) {
 		this.amount = amount;
 	}
 
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
