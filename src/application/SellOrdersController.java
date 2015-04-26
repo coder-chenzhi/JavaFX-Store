@@ -4,8 +4,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import bean.market.PurchaseOrderBean;
-import bean.market.PurchaseOrderOpr;
+import bean.market.SellOrderBean;
+import bean.market.SellOrderOpr;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -24,19 +24,19 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class PurchaseOrdersController extends BorderPane implements
+public class SellOrdersController extends BorderPane implements
 		Initializable {
 
 	@FXML
-	private TableView<PurchaseOrderShow> tableView = new TableView<PurchaseOrderShow>();
+	private TableView<SellOrderShow> tableView = new TableView<SellOrderShow>();
 
 	@FXML
 	private Button add;
 
-	ObservableList<PurchaseOrderShow> data = FXCollections
+	ObservableList<SellOrderShow> data = FXCollections
 			.observableArrayList();
 
-	static final String properties[] = { "orderID", "supplierID",
+	static final String properties[] = { "orderID", "customerID",
 			"totalCost", "commitDate" };
 
 	@SuppressWarnings("unchecked")
@@ -46,7 +46,7 @@ public class PurchaseOrdersController extends BorderPane implements
 		tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		for (int i = 0; i < properties.length; i++) {
 			TableColumn col = new TableColumn(properties[i]);
-			col.setCellValueFactory(new PropertyValueFactory<PurchaseOrderShow, String>(
+			col.setCellValueFactory(new PropertyValueFactory<SellOrderShow, String>(
 					properties[i]));
 			tableView.getColumns().add(col);
 		}
@@ -61,19 +61,19 @@ public class PurchaseOrdersController extends BorderPane implements
 			// System.out.println(stageTheLabelBelongs);
 			// these two of them return the same stage
 			// Swap screen
-			ArrayList<PurchaseOrderBean> rowData = null;
+			ArrayList<SellOrderBean> rowData = null;
 			Stage popup = new Stage();
-			PurchaseOrderProfileController purchaseOrderProfileCtrl = null;
+			SellOrderProfileController purchaseOrderProfileCtrl = null;
 			AnchorPane page = null;
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class
-					.getResource("PurchaseOrderProfile.fxml"));
+					.getResource("SellOrderProfile.fxml"));
 			try {
 				page = (AnchorPane) loader.load();
-				purchaseOrderProfileCtrl = (PurchaseOrderProfileController) loader
+				purchaseOrderProfileCtrl = (SellOrderProfileController) loader
 						.getController();
-				purchaseOrderProfileCtrl.setPurchaseOrders(rowData);
-				purchaseOrderProfileCtrl.setPurchaseOrderController(this);
+				purchaseOrderProfileCtrl.setSellOrders(rowData);
+				purchaseOrderProfileCtrl.setSellOrderController(this);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -86,10 +86,10 @@ public class PurchaseOrdersController extends BorderPane implements
 
 		tableView
 				.setRowFactory(tv -> {
-					TableRow<PurchaseOrderShow> row = new TableRow<>();
+					TableRow<SellOrderShow> row = new TableRow<>();
 					row.setOnMouseClicked(event -> {
 						if (event.getClickCount() == 2 && (!row.isEmpty())) {
-							PurchaseOrderShow rowData = row.getItem();
+							SellOrderShow rowData = row.getItem();
 							System.out.println("rowData: " + rowData);
 							Stage stageTheEventSourceNodeBelongs = (Stage) ((Node) event
 									.getSource()).getScene().getWindow();
@@ -101,22 +101,22 @@ public class PurchaseOrdersController extends BorderPane implements
 							// these two of them return the same stage
 							// Swap screen
 							Stage popup = new Stage();
-							PurchaseOrderProfileController purchaseOrderProfileCtrl = null;
+							SellOrderProfileController purchaseOrderProfileCtrl = null;
 							AnchorPane page = null;
 							FXMLLoader loader = new FXMLLoader();
 							loader.setLocation(Main.class
-									.getResource("PurchaseOrderProfile.fxml"));
+									.getResource("SellOrderProfile.fxml"));
 							try {
 								page = (AnchorPane) loader.load();
-								purchaseOrderProfileCtrl = (PurchaseOrderProfileController) loader
+								purchaseOrderProfileCtrl = (SellOrderProfileController) loader
 										.getController();
-								ArrayList<PurchaseOrderBean> purchaseOrders = PurchaseOrderOpr
+								ArrayList<SellOrderBean> purchaseOrders = SellOrderOpr
 										.getByID(Integer.parseInt(rowData.getOrderID()));
-								System.out.println("PurchaseOrders" + purchaseOrders);
+								System.out.println("SellOrders" + purchaseOrders);
 								purchaseOrderProfileCtrl
-										.setPurchaseOrders(purchaseOrders);
+										.setSellOrders(purchaseOrders);
 								purchaseOrderProfileCtrl
-										.setPurchaseOrderController(this);
+										.setSellOrderController(this);
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -134,8 +134,8 @@ public class PurchaseOrdersController extends BorderPane implements
 
 		data.addAll();
 
-		for (Integer orderID : PurchaseOrderOpr.getUniqueID()) {
-			data.add(new PurchaseOrderShow(orderID));
+		for (Integer orderID : SellOrderOpr.getUniqueID()) {
+			data.add(new SellOrderShow(orderID));
 		}
 
 		tableView.setItems(data);
@@ -143,12 +143,12 @@ public class PurchaseOrdersController extends BorderPane implements
 
 	public void refresh() {
 		/*
-		 * ArrayList<Integer> ids = new ArrayList<>(); for (PurchaseOrderBean
-		 * purchaseOrder : data) { ids.add(purchaseOrder.getPurchaseOrderID());
+		 * ArrayList<Integer> ids = new ArrayList<>(); for (SellOrderBean
+		 * purchaseOrder : data) { ids.add(purchaseOrder.getSellOrderID());
 		 * } data.clear(); for (Integer id : ids) {
-		 * data.add(PurchaseOrderOpr.getPurchaseOrderByID(id)); }
+		 * data.add(SellOrderOpr.getSellOrderByID(id)); }
 		 */
-		for (TableColumn<PurchaseOrderShow, ?> item : tableView.getColumns()) {
+		for (TableColumn<SellOrderShow, ?> item : tableView.getColumns()) {
 			item.setVisible(false);
 			item.setVisible(true);
 		}
@@ -157,7 +157,7 @@ public class PurchaseOrdersController extends BorderPane implements
 	public void clear() {
 		data.clear();
 		/*
-		 * for (TableColumn<PurchaseOrderBean,?> item : tableView.getColumns())
+		 * for (TableColumn<SellOrderBean,?> item : tableView.getColumns())
 		 * { item.setVisible(false); item.setVisible(true); }
 		 */
 	}

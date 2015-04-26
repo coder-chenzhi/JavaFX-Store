@@ -282,6 +282,22 @@ public class MenuController extends BorderPane implements Initializable {
 			tab1.setText("进货");
 			tab1.setContent(page);
 			tabs.getTabs().add(tab1);
+		} else if (text.equals("销售")) {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("SellOrdersMain.fxml"));
+			SellOrdersController menu = null;
+			AnchorPane page = null;
+			try {
+				page = (AnchorPane) loader.load();
+				menu = (SellOrdersController) loader.getController();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Tab tab1 = new Tab();
+			tab1.setText("销售");
+			tab1.setContent(page);
+			tabs.getTabs().add(tab1);
 		} 
 
 	}

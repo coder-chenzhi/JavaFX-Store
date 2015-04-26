@@ -3,6 +3,7 @@ package bean.market;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 import util.Time;
 import database.DataBaseIO;
@@ -17,7 +18,7 @@ public class SellOrderOpr {
 		ResultSet rs = db.executeSqlWithResult(sql, params);
 		try {
 			while (rs.next()) {
-				id = rs.getInt("orderID");
+				id = rs.getInt("maxID");
 			}
 
 		} catch (SQLException e) {
@@ -36,12 +37,17 @@ public class SellOrderOpr {
 	}
 
 	public static void insertSellOrder(SellOrderBean sellOrder) {
-		Object params[] = { getNextSellOrderID(),
-				sellOrder.getGoodID(), sellOrder.getCustomerID(),
-				sellOrder.getAmount(), sellOrder.getPrice(),
-				sellOrder.getCommitDate(), sellOrder.getStatus(),
-				sellOrder.getOther() };
+		Object params[] = { sellOrder.getOrderID(), sellOrder.getGoodID(),
+				sellOrder.getCustomerID(), sellOrder.getAmount(),
+				sellOrder.getPrice(), sellOrder.getCommitDate(),
+				sellOrder.getStatus(), sellOrder.getOther() };
 		String sql = "insert into SellOrders values(?,?,?,?,?,?,?,?)";
+		db.executeSqlWithoutResult(sql, params);
+	}
+
+	public static void deleteSellOrder(int orderID) {
+		Object params[] = { orderID };
+		String sql = "delete from SellOrders where orderID = ?";
 		db.executeSqlWithoutResult(sql, params);
 	}
 	
@@ -54,11 +60,12 @@ public class SellOrderOpr {
 		try {
 			while (rs.next()) {
 				SellOrderBean sellOrder = new SellOrderBean();
-				sellOrder.setOrderID(rs.getInt("orderID"));
-				sellOrder.setGoodID(rs.getInt("goodID"));
-				sellOrder.setCustomerID(rs.getInt("customerID"));
-				sellOrder.setAmount(rs.getInt("amount"));
-				sellOrder.setPrice(rs.getInt("price"));
+				sellOrder.setOrderID(String.valueOf(rs.getInt("orderID")));
+				sellOrder.setGoodID(String.valueOf(rs.getInt("goodID")));
+				sellOrder
+						.setCustomerID(String.valueOf(rs.getInt("customerID")));
+				sellOrder.setAmount(String.valueOf(rs.getInt("amount")));
+				sellOrder.setPrice(String.valueOf(rs.getInt("price")));
 				sellOrder.setCommitDate(rs.getString("commitDate"));
 				sellOrder.setStatus(rs.getString("status"));
 				sellOrders.add(sellOrder);
@@ -74,22 +81,25 @@ public class SellOrderOpr {
 
 		return sellOrders;
 	}
-	
-	public static SellOrderBean getbyID(int orderID) {
-		SellOrderBean sellOrder = new SellOrderBean();
-		Object[] params = {orderID};
+
+	public static ArrayList<SellOrderBean> getByID(int orderID) {
+		ArrayList<SellOrderBean> sellOrders = new ArrayList<>();
+		Object[] params = { orderID };
 		String sql = "select * from SellOrders where orderID = ?";
 		ResultSet rs = db.executeSqlWithResult(sql, params);
 
 		try {
 			while (rs.next()) {
-				sellOrder.setOrderID(rs.getInt("orderID"));
-				sellOrder.setGoodID(rs.getInt("goodID"));
-				sellOrder.setCustomerID(rs.getInt("customerID"));
-				sellOrder.setAmount(rs.getInt("amount"));
-				sellOrder.setPrice(rs.getInt("price"));
+				SellOrderBean sellOrder = new SellOrderBean();
+				sellOrder.setOrderID(String.valueOf(rs.getInt("orderID")));
+				sellOrder.setGoodID(String.valueOf(rs.getInt("goodID")));
+				sellOrder
+						.setCustomerID(String.valueOf(rs.getInt("customerID")));
+				sellOrder.setAmount(String.valueOf(rs.getInt("amount")));
+				sellOrder.setPrice(String.valueOf(rs.getInt("price")));
 				sellOrder.setCommitDate(rs.getString("commitDate"));
 				sellOrder.setStatus(rs.getString("status"));
+				sellOrders.add(sellOrder);
 			}
 
 		} catch (SQLException e) {
@@ -100,7 +110,51 @@ public class SellOrderOpr {
 			db.close();
 		}
 
-		return sellOrder;
+		return sellOrders;
+	}
+
+	public static int getTotalCost(int orderID) {
+		int totalCost = 0;
+		Object[] params = { orderID };
+		String sql = "select amount, price from SellOrders where orderID = ?";
+		ResultSet rs = db.executeSqlWithResult(sql, params);
+
+		try {
+			while (rs.next()) {
+				totalCost += rs.getInt("amount") * rs.getInt("price");
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+
+			db.close();
+		}
+
+		return totalCost;
 	}
 	
+	public static TreeSet<Integer> getUniqueID() {
+		TreeSet<Integer> uniqueIDs = new TreeSet<>();
+		Object[] params = {};
+		String sql = "select distinct orderID from SellOrders";
+		ResultSet rs = db.executeSqlWithResult(sql, params);
+
+		try {
+			while (rs.next()) {
+				uniqueIDs.add(rs.getInt("orderID"));
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+
+			db.close();
+		}
+
+		return uniqueIDs;
+	}
+
 }

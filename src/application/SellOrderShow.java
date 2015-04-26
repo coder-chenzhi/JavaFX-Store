@@ -2,32 +2,32 @@ package application;
 
 import java.util.ArrayList;
 
-import bean.market.PurchaseOrderBean;
-import bean.market.PurchaseOrderOpr;
+import bean.market.SellOrderBean;
+import bean.market.SellOrderOpr;
 
-public class PurchaseOrderShow {
+public class SellOrderShow {
 	private String orderID;
 	private String supplierID;
 	private String totalCost;
 	private String commitDate;
 	private String other;
 
-	public PurchaseOrderShow(PurchaseOrderBean order) {
+	public SellOrderShow(SellOrderBean order) {
 		this.setOrderID(order.getOrderID());
-		this.setSupplierID(order.getSupplierID());
+		this.setCustomerID(order.getCustomerID());
 		this.setCommitDate(order.getCommitDate());
-		this.setTotalCost(String.valueOf(PurchaseOrderOpr.getTotalCost(Integer
+		this.setTotalCost(String.valueOf(SellOrderOpr.getTotalCost(Integer
 				.parseInt(order.getOrderID()))));
 	}
 
-	public PurchaseOrderShow(int orderID) {
-		ArrayList<PurchaseOrderBean> items = PurchaseOrderOpr.getByID(orderID);
+	public SellOrderShow(int orderID) {
+		ArrayList<SellOrderBean> items = SellOrderOpr.getByID(orderID);
 		int totalCost = 0;
 		this.setOrderID(String.valueOf(orderID));
 
-		this.setSupplierID(items.get(0).getSupplierID());
+		this.setCustomerID(items.get(0).getCustomerID());
 		this.setCommitDate(items.get(0).getCommitDate());
-		for (PurchaseOrderBean item : items) {
+		for (SellOrderBean item : items) {
 			totalCost += Integer.parseInt(item.getPrice())
 					* Integer.parseInt(item.getAmount());
 		}
@@ -50,11 +50,11 @@ public class PurchaseOrderShow {
 		this.orderID = orderID;
 	}
 
-	public String getSupplierID() {
+	public String getCustomerID() {
 		return supplierID;
 	}
 
-	public void setSupplierID(String supplierID) {
+	public void setCustomerID(String supplierID) {
 		this.supplierID = supplierID;
 	}
 
@@ -76,7 +76,7 @@ public class PurchaseOrderShow {
 
 	@Override
 	public String toString() {
-		return "PurchaseOrderShow [orderID=" + orderID + ", supplierID="
+		return "SellOrderShow [orderID=" + orderID + ", supplierID="
 				+ supplierID + ", totalCost=" + totalCost + ", commitDate="
 				+ commitDate + ", other=" + other + "]";
 	}

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="690.0" prefWidth="1296.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PurchaseOrdersController">
+<AnchorPane prefHeight="690.0" prefWidth="1296.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SellOrdersController">
    <children>
       <Button fx:id="add" layoutX="20.0" layoutY="17.0" mnemonicParsing="false" text="新增订单" />
       <TableView fx:id="tableView" layoutX="1.0" layoutY="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="50.0" />
