@@ -40,5 +40,6 @@
       <TextField fx:id="other" layoutX="90.0" layoutY="380.0" prefHeight="23.0" prefWidth="439.0" />
       <Button layoutX="90.0" layoutY="430.0" mnemonicParsing="false" onAction="#processSave" prefHeight="25.0" prefWidth="60.0" text="保存" />
       <Button layoutX="265.0" layoutY="430.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="退出" />
+      <AnchorPane fx:id="imagePanel" layoutX="378.0" layoutY="24.0" prefHeight="136.0" prefWidth="146.0" />
    </children>
 </AnchorPane>

@@ -48,5 +48,6 @@
       <Button layoutX="265.0" layoutY="480.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="退出" />
       <Label layoutX="30.0" layoutY="434.0" text="账号余额：" />
       <TextField fx:id="balance" layoutX="90.0" layoutY="430.0" prefHeight="23.0" prefWidth="103.0" />
+      <AnchorPane fx:id="imagePanel" layoutX="384.0" layoutY="28.0" prefHeight="127.0" prefWidth="141.0" />
    </children>
 </AnchorPane>

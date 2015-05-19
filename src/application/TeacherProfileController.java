@@ -1,10 +1,14 @@
 package application;
 
+import java.io.File;
 import java.net.URL;
+import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import bean.teach.StudentOpr;
 import bean.teach.TeacherBean;
 import bean.teach.TeacherOpr;
 import util.Time;
@@ -12,16 +16,42 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class TeacherProfileController extends AnchorPane implements
 		Initializable {
 	
 	private boolean isUpdate;
+	
+	private String imageName = "";
+
+	public String getImageName() {
+		return imageName;
+	}
+
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
+
+	@FXML
+	private AnchorPane imagePanel;
+
+	@FXML
+	private Button openImage;
+
+	@FXML
+	private ImageView imageView;
+
 	
 	@FXML
 	private TextField teacherID;
@@ -84,11 +114,17 @@ public class TeacherProfileController extends AnchorPane implements
 			isUpdate = false;
 			this.teacher = new TeacherBean();
 			
+			imageName = "file:C:\\images\\teacher_"
+					+ TeacherOpr.getNextTeacherID() + ".jpg";
+			
 			this.teacher.setTeacherID(TeacherOpr.getNextTeacherID());
 			teacherID.setText(String.valueOf(TeacherOpr.getNextTeacherID()));
 		} else {
 			isUpdate = true;
 			this.teacher = teacher;
+			
+			imageName = "file:C:\\images\\teacher_"
+					+ this.teacher.getTeacherID() + ".jpg";
 			
 			System.out.println("Teacher Profile Page:\n" + this.teacher);
 			teacherID.setText(String.valueOf(this.teacher.getTeacherID()));
@@ -117,7 +153,34 @@ public class TeacherProfileController extends AnchorPane implements
 
 			other.setText(this.teacher.getOther());
 		}
-		
+
+		// init imageView
+		File folder = new File("C://images");
+		ArrayList<String> files = new ArrayList<>();
+		for (final File fileEntry : folder.listFiles()) {
+			files.add(fileEntry.getName());
+		}
+
+		boolean flag = false;
+		for (String str : files) {
+			if (imageName.endsWith(str)) {
+				flag = true;
+				break;
+			}
+		}
+
+		System.out.println("imageName" + imageName);
+		if (flag) {
+			Image image = new Image(imageName);
+
+			imageView = new ImageView(image);
+			imageView.setFitHeight(120);
+			imageView.setFitWidth(140);
+			imagePanel.getChildren().add(imageView);
+		} else {
+			// openImage = new Button("Open Image");
+			imagePanel.getChildren().add(openImage);
+		}
 		
 	}
 
@@ -145,6 +208,51 @@ public class TeacherProfileController extends AnchorPane implements
 		status.setId("uneditable-combobox");
 		status.setPromptText("ÇëÑ¡Ôñ");
 		status.setItems(statusStrings);
+		
+		openImage = new Button("Open JPEG Image...");
+
+		openImage.setOnAction(event -> {
+			String destFileName = "C://images/";
+			String studentID = "";
+			Stage stageTheEventSourceNodeBelongs = (Stage) ((Node) event
+					.getSource()).getScene().getWindow();
+
+			for (Node node : ((Node) event.getSource()).getScene().getRoot()
+					.getChildrenUnmodifiable()) {
+				// System.out.println(node);
+				// System.out.println(node.getId());
+				if (node instanceof TextField
+						&& node.getId().equals("teacherID")) {
+					studentID = ((TextField) node).getText();
+					break;
+				}
+			}
+			System.out.println("this is " + studentID);
+			destFileName += "teacher_" + studentID + ".jpg";
+			File destFile = new File(destFileName);
+			final FileChooser fileChooser = new FileChooser();
+			fileChooser.getExtensionFilters().addAll(
+					new FileChooser.ExtensionFilter("JPG", "*.jpg"));
+			File file = fileChooser
+					.showOpenDialog(stageTheEventSourceNodeBelongs);
+			if (file != null) {
+				// System.out.println(file.getName());
+				try {
+					Files.copy(file.toPath(), destFile.toPath());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			openImage.setVisible(false);
+			Image image = new Image("file:" + destFileName);
+
+			imageView = new ImageView(image);
+			imageView.setFitHeight(120);
+			imageView.setFitWidth(140);
+			imagePanel.getChildren().add(imageView);
+		});
+		
 	}
 	
 	public void processSave() {
