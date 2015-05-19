@@ -62,7 +62,7 @@ public class Main extends Application {
         }
     }
 	
-    private void gotoLogin() {
+    public void gotoLogin() {
         try {
             LoginController login = (LoginController) 
             		replaceSceneContent("Login.fxml");

@@ -45,12 +45,14 @@
                   <MenuItem fx:id="studentLeaveOut" mnemonicParsing="false" onAction="#processMenuClick" text="学生请假" />
               </items>
             </Menu>
+            <!-- 
             <Menu mnemonicParsing="false" text="报表">
               <items>
                 <MenuItem fx:id="tableTeacherCheckIn" mnemonicParsing="false" onAction="#processMenuClick" text="教师上课报表" />
                   <MenuItem fx:id="tableStudentTakeCourse" mnemonicParsing="false" onAction="#processMenuClick" text="学生上课报表" />
               </items>
             </Menu>
+             -->
             <Menu mnemonicParsing="false" text="工具">
               <items>
                 <MenuItem fx:id="calculator" mnemonicParsing="false" onAction="#processMenuClick" text="计算器" />

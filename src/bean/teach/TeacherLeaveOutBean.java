@@ -56,4 +56,11 @@ public class TeacherLeaveOutBean {
 		this.other = other;
 	}
 
+	@Override
+	public String toString() {
+		return "TeacherLeaveOutBean [teacherID=" + teacherID + ", startDate="
+				+ startDate + ", startTime=" + startTime + ", endDate="
+				+ endDate + ", endTime=" + endTime + ", other=" + other + "]";
+	}
+
 }

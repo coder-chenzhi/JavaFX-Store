@@ -8,11 +8,11 @@ public class StudentLeaveOutBean {
 	private String endTime;
 	private String other;
 
-	public int getTeacherID() {
+	public int getStudentID() {
 		return studentID;
 	}
 
-	public void setTeacherID(int teacherID) {
+	public void setStudentID(int teacherID) {
 		this.studentID = teacherID;
 	}
 
@@ -54,6 +54,13 @@ public class StudentLeaveOutBean {
 
 	public void setOther(String other) {
 		this.other = other;
+	}
+
+	@Override
+	public String toString() {
+		return "StudentLeaveOutBean [studentID=" + studentID + ", startDate="
+				+ startDate + ", startTime=" + startTime + ", endDate="
+				+ endDate + ", endTime=" + endTime + ", other=" + other + "]";
 	}
 
 }
