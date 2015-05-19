@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="170.0" prefWidth="527.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TeacherCheckInProfileController">
+   <children>
+      <Label layoutX="30.0" layoutY="30.0" text="教师编号：" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="260.0" layoutY="34.0" prefHeight="15.0" prefWidth="51.0" text="类型：" textAlignment="JUSTIFY" />
+      <TextField fx:id="teacherID" layoutX="90.0" layoutY="30.0" prefHeight="23.0" prefWidth="124.0" />
+      <ComboBox fx:id="type" layoutX="325.0" layoutY="30.0" prefHeight="23.0" prefWidth="160.0" />
+      <Button layoutX="151.0" layoutY="102.0" mnemonicParsing="false" onAction="#processSave" prefHeight="25.0" prefWidth="60.0" text="打卡" />
+      <Button layoutX="336.0" layoutY="102.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="退出" />
+   </children>
+</AnchorPane>

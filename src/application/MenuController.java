@@ -330,6 +330,22 @@ public class MenuController extends BorderPane implements Initializable {
 			tab1.setText("教师请假");
 			tab1.setContent(page);
 			tabs.getTabs().add(tab1);
+		} else if (text.equals("教师考勤")) {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("TeachersCheckInMain.fxml"));
+			TeachersCheckInController menu = null;
+			AnchorPane page = null;
+			try {
+				page = (AnchorPane) loader.load();
+				menu = (TeachersCheckInController) loader.getController();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Tab tab1 = new Tab();
+			tab1.setText("教师请假");
+			tab1.setContent(page);
+			tabs.getTabs().add(tab1);
 		} else if (text.equals("计算器")) {
 			try {
 				System.out.println("Opening calc");

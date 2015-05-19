@@ -147,6 +147,39 @@ public class TeacherCheckInOpr {
 		return records;
 	}
 	
+	/**
+	 * 
+	 * @return 返回所有教师的所有打卡记录
+	 */
+	public static ArrayList<TeacherCheckInBean> getAllRecord() {
+		ArrayList<TeacherCheckInBean> records = new ArrayList<TeacherCheckInBean>();
+		
+		Object params[] = {};
+		String sql = "select * from teacherCheckIn";
+		ResultSet rs = db.executeSqlWithResult(sql, params);
+
+		try {
+			while (rs.next()) {
+
+				TeacherCheckInBean record = new TeacherCheckInBean();
+				record.setTeacherID(rs.getInt("teacherID"));
+				record.setCheckDate(rs.getString("CheckDate"));
+				record.setCheckTime(rs.getString("CheckTime"));
+				record.setType(rs.getString("Type"));
+				records.add(record);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+
+			db.close();
+		}
+		
+		return records;
+	}
+	
 	public static void main(String[] args) {
 		/*TeacherCheckInBean record = new TeacherCheckInBean();
 		record.setTeacherID("001");
